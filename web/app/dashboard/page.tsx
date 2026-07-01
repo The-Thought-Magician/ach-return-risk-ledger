@@ -83,7 +83,7 @@ function fmtDate(s?: string | null) {
 }
 
 // NACHA reference limits for the gauge reference bands.
-const LIMITS: Record<string, number> = { unauthorized: 0.005, admin: 0.03, overall: 0.15 }
+const LIMITS: Record<string, number> = { unauthorized: 0.5, admin: 3, overall: 15 }
 
 function RateGauge({
   label,
