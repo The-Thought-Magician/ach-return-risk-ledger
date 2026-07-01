@@ -122,7 +122,10 @@ export default function RatesPage() {
     setError('')
     try {
       const [r, p] = await Promise.all([api.getRates(), api.getPortfolioRate()])
-      setRates(Array.isArray(r) ? r : [])
+      const flattened = Array.isArray(r)
+        ? r.map((row: RateRow & { snapshot?: RateRow | null }) => ({ ...row, ...(row.snapshot ?? {}) }))
+        : []
+      setRates(flattened)
       setPortfolio(p && typeof p === 'object' ? p : null)
     } catch (e) {
       setError(e instanceof Error ? e.message : 'Failed to load rates')

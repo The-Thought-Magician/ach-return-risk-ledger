@@ -199,9 +199,8 @@ router.get('/originator/:id', async (c) => {
   return c.json(snaps)
 })
 
-// POST /recompute — recompute snapshots for all originators + portfolio.
-router.post('/recompute', authMiddleware, async (c) => {
-  const userId = getUserId(c)
+// Shared recompute logic, callable from other routes (e.g. after seeding sample data).
+export async function recomputeSnapshots(userId: string) {
   const t = await getThresholds(userId)
   const asOf = new Date()
 
@@ -266,7 +265,14 @@ router.post('/recompute', authMiddleware, async (c) => {
     detail: { computed: snapshots.length, as_of: asOf.toISOString() },
   })
 
-  return c.json({ computed: snapshots.length, snapshots })
+  return { computed: snapshots.length, snapshots }
+}
+
+// POST /recompute — recompute snapshots for all originators + portfolio.
+router.post('/recompute', authMiddleware, async (c) => {
+  const userId = getUserId(c)
+  const result = await recomputeSnapshots(userId)
+  return c.json(result)
 })
 
 export default router

@@ -14,6 +14,7 @@ import {
 } from '../db/schema.js'
 import { eq, and, desc } from 'drizzle-orm'
 import { authMiddleware, getUserId } from '../lib/auth.js'
+import { recomputeSnapshots } from './rates.js'
 
 const router = new Hono()
 
@@ -370,6 +371,14 @@ router.post('/sample', authMiddleware, async (c) => {
   const now = Date.now()
   const day = DAY_MS
 
+  const existingSample = await db
+    .select()
+    .from(originators)
+    .where(and(eq(originators.workspace_id, userId), eq(originators.company_id, 'SAMP001')))
+  if (existingSample.length > 0) {
+    return c.json({ error: 'Sample data already seeded for this workspace' }, 409)
+  }
+
   const sampleOriginators = [
     {
       name: 'Sample Subscriptions Co',
@@ -512,6 +521,8 @@ router.post('/sample', authMiddleware, async (c) => {
     .returning()
 
   await logAudit(userId, userId, 'import.sample', 'import', record.id, summary)
+
+  await recomputeSnapshots(userId)
 
   return c.json({ import: record, summary }, 201)
 })
