@@ -67,7 +67,7 @@ interface Alert {
 
 function pct(n?: number) {
   if (n == null || Number.isNaN(n)) return '0.00%'
-  return `${(n * 100).toFixed(2)}%`
+  return `${n.toFixed(2)}%`
 }
 
 function money(cents?: number) {
