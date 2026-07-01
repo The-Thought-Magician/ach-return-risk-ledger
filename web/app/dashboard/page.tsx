@@ -305,7 +305,10 @@ export default function DashboardPage() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
               {Object.entries(sparklines).map(([key, series]) => {
                 const tone = key.includes('unauth') || key.includes('breach') ? 'red' : key.includes('admin') ? 'amber' : 'emerald'
-                const last = series && series.length ? series[series.length - 1] : 0
+                const values = (series ?? []).map((p: number | { value?: number }) =>
+                  typeof p === 'number' ? p : Number(p?.value ?? 0),
+                )
+                const last = values.length ? values[values.length - 1] : 0
                 return (
                   <div key={key} className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
                     <div className="flex items-center justify-between">
@@ -313,11 +316,11 @@ export default function DashboardPage() {
                         {key.replace(/_/g, ' ')}
                       </span>
                       <span className="text-sm font-semibold tabular-nums text-slate-200">
-                        {last < 1 && last > 0 ? pct(last) : last}
+                        {pct(last)}
                       </span>
                     </div>
                     <div className="mt-3">
-                      <Sparkline data={series ?? []} tone={tone} />
+                      <Sparkline data={values} tone={tone} />
                     </div>
                   </div>
                 )
