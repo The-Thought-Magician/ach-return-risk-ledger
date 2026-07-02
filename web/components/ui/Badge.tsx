@@ -7,11 +7,11 @@ interface BadgeProps extends HTMLAttributes<HTMLSpanElement> {
 }
 
 const tones: Record<Tone, string> = {
-  clear: 'bg-emerald-500/15 text-emerald-300 border-emerald-500/30',
+  clear: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
   watch: 'bg-amber-500/15 text-amber-300 border-amber-500/30',
   warning: 'bg-orange-500/15 text-orange-300 border-orange-500/30',
   breach: 'bg-red-500/15 text-red-300 border-red-500/30',
-  neutral: 'bg-slate-700/40 text-slate-300 border-slate-600/40',
+  neutral: 'bg-zinc-700/40 text-zinc-300 border-zinc-600/40',
   info: 'bg-sky-500/15 text-sky-300 border-sky-500/30',
 }
 

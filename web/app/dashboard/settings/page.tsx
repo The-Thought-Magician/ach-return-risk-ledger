@@ -192,7 +192,7 @@ export default function SettingsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-xl font-semibold text-white">Workspace Settings</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <p className="mt-1 text-sm text-zinc-400">
           Manage your workspace identity, subscription plan and billing.
         </p>
       </div>
@@ -215,22 +215,22 @@ export default function SettingsPage() {
         <CardBody className="space-y-4">
           <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
             <Field label="Account email">
-              <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2 text-sm text-slate-200">
+              <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2 text-sm text-zinc-200">
                 {user?.email ?? '—'}
               </div>
             </Field>
             <Field label="Display name">
-              <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2 text-sm text-slate-200">
+              <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2 text-sm text-zinc-200">
                 {user?.name ?? '—'}
               </div>
             </Field>
             <Field label="Workspace ID">
-              <div className="truncate rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2 font-mono text-xs text-slate-400">
+              <div className="truncate rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2 font-mono text-xs text-zinc-400">
                 {user?.id ?? sub?.user_id ?? '—'}
               </div>
             </Field>
             <Field label="Session">
-              <div className="flex items-center justify-between gap-2 rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2 text-sm text-slate-200">
+              <div className="flex items-center justify-between gap-2 rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2 text-sm text-zinc-200">
                 <span>Signed in</span>
                 <button onClick={signOut} className="text-xs text-red-400 hover:text-red-300">
                   Sign out
@@ -254,13 +254,13 @@ export default function SettingsPage() {
             </div>
           )}
           {notice && (
-            <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-3 py-2 text-sm text-emerald-300">
+            <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-3 py-2 text-sm text-amber-300">
               {notice}
             </div>
           )}
 
           {sub && (sub.status || sub.current_period_end || sub.stripe_subscription_id) && (
-            <div className="grid grid-cols-2 gap-3 rounded-lg border border-slate-800 bg-slate-950/40 p-4 sm:grid-cols-4">
+            <div className="grid grid-cols-2 gap-3 rounded-lg border border-zinc-800 bg-zinc-950/40 p-4 sm:grid-cols-4">
               <Detail
                 label="Status"
                 value={<Badge tone={subStatusTone}>{sub.status ?? 'unknown'}</Badge>}
@@ -296,7 +296,7 @@ export default function SettingsPage() {
             />
           </div>
 
-          <div className="flex flex-wrap items-center gap-3 border-t border-slate-800 pt-4">
+          <div className="flex flex-wrap items-center gap-3 border-t border-zinc-800 pt-4">
             {!isPro ? (
               <Button onClick={startCheckout} disabled={actionPending !== null}>
                 {actionPending === 'checkout' ? 'Redirecting…' : 'Upgrade to Pro'}
@@ -307,12 +307,12 @@ export default function SettingsPage() {
               </Button>
             )}
             {isPro && (
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-zinc-500">
                 Update payment method, view invoices or cancel from the Stripe billing portal.
               </span>
             )}
             {!stripeEnabled && (
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-zinc-500">
                 Billing actions are disabled until Stripe is configured on the backend.
               </span>
             )}
@@ -339,7 +339,7 @@ function PlanCard({
   return (
     <div
       className={`rounded-xl border p-5 ${
-        highlight ? 'border-emerald-500/40 bg-emerald-500/5' : 'border-slate-800 bg-slate-950/40'
+        highlight ? 'border-amber-500/40 bg-amber-500/5' : 'border-zinc-800 bg-zinc-950/40'
       }`}
     >
       <div className="flex items-center justify-between">
@@ -349,7 +349,7 @@ function PlanCard({
       <div className="mt-2 text-2xl font-semibold tabular-nums text-white">{price}</div>
       <ul className="mt-4 space-y-2">
         {features.map((f) => (
-          <li key={f} className="flex items-start gap-2 text-sm text-slate-300">
+          <li key={f} className="flex items-start gap-2 text-sm text-zinc-300">
             <svg
               width="16"
               height="16"
@@ -357,7 +357,7 @@ function PlanCard({
               fill="none"
               stroke="currentColor"
               strokeWidth="2.5"
-              className="mt-0.5 shrink-0 text-emerald-400"
+              className="mt-0.5 shrink-0 text-amber-400"
               aria-hidden
             >
               <path d="M20 6 9 17l-5-5" />
@@ -373,7 +373,7 @@ function PlanCard({
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
       {children}
     </label>
   )
@@ -382,8 +382,8 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function Detail({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div>
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</div>
-      <div className="mt-0.5 text-slate-200">{value}</div>
+      <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</div>
+      <div className="mt-0.5 text-zinc-200">{value}</div>
     </div>
   )
 }

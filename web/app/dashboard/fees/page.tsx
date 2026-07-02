@@ -192,7 +192,7 @@ export default function FeesPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Fee Economics Ledger</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Track return-related fees against recovered amounts to surface the true cost of ACH returns.
           </p>
         </div>
@@ -244,15 +244,15 @@ export default function FeesPage() {
                   return (
                     <TR key={r.originator_id}>
                       <TD className="font-medium text-white">{summaryName(r)}</TD>
-                      <TD className="text-right tabular-nums text-slate-300">{dollars(feesOf(r))}</TD>
-                      <TD className="text-right tabular-nums text-emerald-300">{dollars(recoveredOf(r))}</TD>
-                      <TD className={`text-right font-semibold tabular-nums ${net > 0 ? 'text-red-300' : 'text-emerald-300'}`}>
+                      <TD className="text-right tabular-nums text-zinc-300">{dollars(feesOf(r))}</TD>
+                      <TD className="text-right tabular-nums text-amber-300">{dollars(recoveredOf(r))}</TD>
+                      <TD className={`text-right font-semibold tabular-nums ${net > 0 ? 'text-red-300' : 'text-amber-300'}`}>
                         {dollars(net)}
                       </TD>
                       <TD>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
                           <div
-                            className={`h-full rounded-full ${net > 0 ? 'bg-red-500' : 'bg-emerald-500'}`}
+                            className={`h-full rounded-full ${net > 0 ? 'bg-red-500' : 'bg-amber-500'}`}
                             style={{ width: `${pct}%` }}
                           />
                         </div>
@@ -272,7 +272,7 @@ export default function FeesPage() {
           <select
             value={originatorFilter}
             onChange={(e) => setOriginatorFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
           >
             <option value="">All originators</option>
             {originators.map((o) => (
@@ -284,7 +284,7 @@ export default function FeesPage() {
           <select
             value={typeFilter}
             onChange={(e) => setTypeFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
           >
             <option value="">All fee types</option>
             {FEE_TYPES.map((t) => (
@@ -293,7 +293,7 @@ export default function FeesPage() {
               </option>
             ))}
           </select>
-          <span className="ml-auto text-xs text-slate-500">{fees.length} records</span>
+          <span className="ml-auto text-xs text-zinc-500">{fees.length} records</span>
         </CardHeader>
         <CardBody className="p-0">
           {fees.length === 0 ? (
@@ -330,7 +330,7 @@ export default function FeesPage() {
                     <TD>
                       <Badge tone="info">{(f.fee_type || 'other').replace(/_/g, ' ')}</Badge>
                     </TD>
-                    <TD className="text-slate-400">{fmtDate(f.incurred_at || f.created_at)}</TD>
+                    <TD className="text-zinc-400">{fmtDate(f.incurred_at || f.created_at)}</TD>
                     <TD className="text-right font-semibold tabular-nums text-red-300">{dollars(f.amount_cents)}</TD>
                     <TD className="text-right">
                       <Button
@@ -372,11 +372,11 @@ export default function FeesPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Originator</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Originator</label>
             <select
               value={form.originator_id}
               onChange={(e) => setForm((f) => ({ ...f, originator_id: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
             >
               <option value="">Select originator</option>
               {originators.map((o) => (
@@ -387,11 +387,11 @@ export default function FeesPage() {
             </select>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Fee type</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Fee type</label>
             <select
               value={form.fee_type}
               onChange={(e) => setForm((f) => ({ ...f, fee_type: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
             >
               {FEE_TYPES.map((t) => (
                 <option key={t} value={t}>
@@ -402,7 +402,7 @@ export default function FeesPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Amount (USD)</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Amount (USD)</label>
               <input
                 type="number"
                 step="0.01"
@@ -410,16 +410,16 @@ export default function FeesPage() {
                 value={form.amount}
                 onChange={(e) => setForm((f) => ({ ...f, amount: e.target.value }))}
                 placeholder="0.00"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Incurred</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Incurred</label>
               <input
                 type="date"
                 value={form.incurred_at}
                 onChange={(e) => setForm((f) => ({ ...f, incurred_at: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
               />
             </div>
           </div>

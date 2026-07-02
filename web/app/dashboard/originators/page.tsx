@@ -38,9 +38,9 @@ const EMPTY_FORM = {
 
 type FormState = typeof EMPTY_FORM
 
-const labelCls = 'block text-xs font-medium text-slate-400 mb-1'
+const labelCls = 'block text-xs font-medium text-zinc-400 mb-1'
 const inputCls =
-  'w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-100 placeholder-slate-600 focus:border-emerald-500 focus:outline-none focus:ring-1 focus:ring-emerald-500/50'
+  'w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-100 placeholder-zinc-600 focus:border-amber-500 focus:outline-none focus:ring-1 focus:ring-amber-500/50'
 
 function formFromOriginator(o: Originator): FormState {
   return {
@@ -287,7 +287,7 @@ export default function OriginatorsPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-white">Originator Registry</h1>
-          <p className="mt-0.5 text-sm text-slate-500">Onboarded originators scoped to your workspace.</p>
+          <p className="mt-0.5 text-sm text-zinc-500">Onboarded originators scoped to your workspace.</p>
         </div>
         <div className="flex gap-2">
           <Button variant="secondary" onClick={() => { setBulkText(''); setFormError(null); setBulkOpen(true) }}>
@@ -326,7 +326,7 @@ export default function OriginatorsPage() {
               ))}
             </select>
           </div>
-          <span className="text-xs text-slate-500">{filtered.length} shown</span>
+          <span className="text-xs text-zinc-500">{filtered.length} shown</span>
         </CardHeader>
         <CardBody className="p-0">
           {loading ? (
@@ -379,15 +379,15 @@ export default function OriginatorsPage() {
                     <TD>
                       <Link
                         href={`/dashboard/originators/${o.id}`}
-                        className="font-medium text-emerald-300 hover:text-emerald-200"
+                        className="font-medium text-amber-300 hover:text-amber-200"
                       >
                         {o.name}
                       </Link>
                     </TD>
-                    <TD className="text-slate-400">{o.company_id || '—'}</TD>
-                    <TD className="text-slate-400">{o.odfi_name || '—'}</TD>
-                    <TD className="tabular-nums text-slate-400">{o.routing_number || '—'}</TD>
-                    <TD className="text-slate-400">{o.mcc || '—'}</TD>
+                    <TD className="text-zinc-400">{o.company_id || '—'}</TD>
+                    <TD className="text-zinc-400">{o.odfi_name || '—'}</TD>
+                    <TD className="tabular-nums text-zinc-400">{o.routing_number || '—'}</TD>
+                    <TD className="text-zinc-400">{o.mcc || '—'}</TD>
                     <TD className="text-right tabular-nums">{money(o.expected_monthly_volume)}</TD>
                     <TD>
                       <Badge tone={statusTone(o.status)}>{o.status ?? 'unknown'}</Badge>
@@ -466,7 +466,7 @@ export default function OriginatorsPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-zinc-300">
           Delete <span className="font-semibold text-white">{deleting?.name}</span>? This removes the originator and is
           not reversible.
         </p>
@@ -489,10 +489,10 @@ export default function OriginatorsPage() {
         }
       >
         {formError && <div className="mb-3 rounded-lg border border-red-500/30 bg-red-500/10 px-3 py-2 text-sm text-red-300">{formError}</div>}
-        <p className="mb-2 text-sm text-slate-400">
+        <p className="mb-2 text-sm text-zinc-400">
           One originator per line, comma-separated. An optional header row is skipped.
         </p>
-        <p className="mb-3 text-xs text-slate-500">
+        <p className="mb-3 text-xs text-zinc-500">
           name, company_id, odfi_name, routing_number, mcc, expected_monthly_volume, status
         </p>
         <textarea
@@ -501,7 +501,7 @@ export default function OriginatorsPage() {
           value={bulkText}
           onChange={(e) => setBulkText(e.target.value)}
         />
-        <p className="mt-2 text-xs text-slate-500">{parseBulk().length} row(s) parsed.</p>
+        <p className="mt-2 text-xs text-zinc-500">{parseBulk().length} row(s) parsed.</p>
       </Modal>
     </div>
   )

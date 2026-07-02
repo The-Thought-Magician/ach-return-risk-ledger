@@ -65,7 +65,7 @@ function gradeTone(grade?: string): 'clear' | 'watch' | 'warning' | 'breach' | '
 }
 
 function scoreTone(score: number): string {
-  if (score >= 80) return 'text-emerald-300'
+  if (score >= 80) return 'text-amber-300'
   if (score >= 60) return 'text-amber-300'
   if (score >= 40) return 'text-orange-300'
   return 'text-red-300'
@@ -83,14 +83,14 @@ function originatorLabel(s: Scorecard): string {
 function ScoreBar({ score, label }: { score: number; label: string }) {
   const pct = Math.max(0, Math.min(100, num(score)))
   const color =
-    pct >= 80 ? 'bg-emerald-500' : pct >= 60 ? 'bg-amber-500' : pct >= 40 ? 'bg-orange-500' : 'bg-red-500'
+    pct >= 80 ? 'bg-amber-500' : pct >= 60 ? 'bg-amber-500' : pct >= 40 ? 'bg-orange-500' : 'bg-red-500'
   return (
     <div>
-      <div className="flex items-center justify-between text-xs text-slate-400">
+      <div className="flex items-center justify-between text-xs text-zinc-400">
         <span>{label}</span>
-        <span className="tabular-nums text-slate-300">{pct.toFixed(0)}</span>
+        <span className="tabular-nums text-zinc-300">{pct.toFixed(0)}</span>
       </div>
-      <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+      <div className="mt-1 h-2 w-full overflow-hidden rounded-full bg-zinc-800">
         <div className={`h-full rounded-full ${color}`} style={{ width: `${pct}%` }} />
       </div>
     </div>
@@ -254,8 +254,8 @@ export default function ScorecardsPage() {
   }, [scorecards])
 
   const sortIndicator = (key: SortKey) => {
-    if (sortKey !== key) return <span className="ml-1 text-slate-600">↕</span>
-    return <span className="ml-1 text-emerald-400">{sortDir === 'asc' ? '↑' : '↓'}</span>
+    if (sortKey !== key) return <span className="ml-1 text-zinc-600">↕</span>
+    return <span className="ml-1 text-amber-400">{sortDir === 'asc' ? '↑' : '↓'}</span>
   }
 
   if (loading) return <PageSpinner label="Loading scorecards..." />
@@ -265,7 +265,7 @@ export default function ScorecardsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Originator Scorecards</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Composite risk grades blending headroom, velocity, volume, and re-presentment performance.
           </p>
         </div>
@@ -285,7 +285,7 @@ export default function ScorecardsPage() {
         </div>
       )}
       {actionMsg && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
           {actionMsg}
         </div>
       )}
@@ -309,7 +309,7 @@ export default function ScorecardsPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <span className="text-sm font-semibold text-white">Saved views</span>
-            <span className="text-xs text-slate-500">{views.length} saved</span>
+            <span className="text-xs text-zinc-500">{views.length} saved</span>
           </CardHeader>
           <CardBody className="flex flex-wrap gap-2">
             <button
@@ -320,8 +320,8 @@ export default function ScorecardsPage() {
               }}
               className={`rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
                 activeView === ''
-                  ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-300'
-                  : 'border-slate-700 bg-slate-800/50 text-slate-300 hover:bg-slate-700'
+                  ? 'border-amber-500/40 bg-amber-500/15 text-amber-300'
+                  : 'border-zinc-700 bg-zinc-800/50 text-zinc-300 hover:bg-zinc-700'
               }`}
             >
               All originators
@@ -331,8 +331,8 @@ export default function ScorecardsPage() {
                 key={v.id}
                 className={`inline-flex items-center gap-2 rounded-lg border px-3 py-1.5 text-xs font-medium transition-colors ${
                   activeView === v.id
-                    ? 'border-emerald-500/40 bg-emerald-500/15 text-emerald-300'
-                    : 'border-slate-700 bg-slate-800/50 text-slate-300'
+                    ? 'border-amber-500/40 bg-amber-500/15 text-amber-300'
+                    : 'border-zinc-700 bg-zinc-800/50 text-zinc-300'
                 }`}
               >
                 <button onClick={() => applyView(v)} className="hover:text-white">
@@ -340,7 +340,7 @@ export default function ScorecardsPage() {
                 </button>
                 <button
                   onClick={() => removeView(v.id)}
-                  className="text-slate-500 hover:text-red-300"
+                  className="text-zinc-500 hover:text-red-300"
                   aria-label={`Delete view ${v.name}`}
                 >
                   ×
@@ -361,7 +361,7 @@ export default function ScorecardsPage() {
               setActiveView('')
             }}
             placeholder="Search originators..."
-            className="w-56 rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+            className="w-56 rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
           />
           <select
             value={gradeFilter}
@@ -369,7 +369,7 @@ export default function ScorecardsPage() {
               setGradeFilter(e.target.value)
               setActiveView('')
             }}
-            className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
           >
             <option value="">All grades</option>
             {grades.map((g) => (
@@ -378,7 +378,7 @@ export default function ScorecardsPage() {
               </option>
             ))}
           </select>
-          <span className="ml-auto text-xs text-slate-500">
+          <span className="ml-auto text-xs text-zinc-500">
             {filtered.length} of {scorecards.length}
           </span>
         </CardHeader>
@@ -439,13 +439,13 @@ export default function ScorecardsPage() {
                     <TD className={`text-right font-semibold tabular-nums ${scoreTone(num(s.composite_score))}`}>
                       {num(s.composite_score).toFixed(1)}
                     </TD>
-                    <TD className="text-right tabular-nums text-slate-300">{num(s.headroom_score).toFixed(0)}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">{num(s.velocity_score).toFixed(0)}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">{num(s.volume_score).toFixed(0)}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">{num(s.representment_score).toFixed(0)}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">
+                    <TD className="text-right tabular-nums text-zinc-300">{num(s.headroom_score).toFixed(0)}</TD>
+                    <TD className="text-right tabular-nums text-zinc-300">{num(s.velocity_score).toFixed(0)}</TD>
+                    <TD className="text-right tabular-nums text-zinc-300">{num(s.volume_score).toFixed(0)}</TD>
+                    <TD className="text-right tabular-nums text-zinc-300">{num(s.representment_score).toFixed(0)}</TD>
+                    <TD className="text-right tabular-nums text-zinc-300">
                       {num(s.percentile).toFixed(0)}
-                      <span className="text-slate-600">th</span>
+                      <span className="text-zinc-600">th</span>
                     </TD>
                   </TR>
                 ))}
@@ -491,15 +491,15 @@ export default function ScorecardsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">View name</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">View name</label>
             <input
               value={viewName}
               onChange={(e) => setViewName(e.target.value)}
               placeholder="e.g. At-risk originators"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
             />
           </div>
-          <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2 text-xs text-slate-400">
+          <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2 text-xs text-zinc-400">
             Captures: search {search ? `"${search}"` : '(none)'}, grade {gradeFilter || 'all'}, sorted by {sortKey} {sortDir}.
           </div>
         </div>

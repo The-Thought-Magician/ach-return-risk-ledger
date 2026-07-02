@@ -91,12 +91,12 @@ function RateMeter({ rate, limit, status }: { rate: number; limit: number; statu
   // marker positions for watch (60%) and warning (80%) bands relative to limit
   return (
     <div className="min-w-[140px]">
-      <div className="relative h-2 w-full overflow-hidden rounded-full bg-slate-800">
+      <div className="relative h-2 w-full overflow-hidden rounded-full bg-zinc-800">
         <div className="h-full rounded-full transition-all" style={{ width: `${util}%`, backgroundColor: color }} />
         <span className="absolute top-0 h-full w-px bg-amber-400/50" style={{ left: '60%' }} title="Watch (60%)" />
         <span className="absolute top-0 h-full w-px bg-orange-400/60" style={{ left: '80%' }} title="Warning (80%)" />
       </div>
-      <div className="mt-1 flex justify-between text-[10px] tabular-nums text-slate-500">
+      <div className="mt-1 flex justify-between text-[10px] tabular-nums text-zinc-500">
         <span>{pct(rate)}</span>
         <span>limit {limit}%</span>
       </div>
@@ -192,7 +192,7 @@ export default function RatesPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white">Threshold Monitor</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Rolling return rates per originator versus NACHA limits, with headroom and status.
           </p>
         </div>
@@ -205,7 +205,7 @@ export default function RatesPage() {
         <div className="rounded-lg border border-red-700/60 bg-red-900/30 p-3 text-sm text-red-300">{error}</div>
       )}
       {notice && (
-        <div className="rounded-lg border border-emerald-700/60 bg-emerald-900/20 p-3 text-sm text-emerald-300">
+        <div className="rounded-lg border border-amber-700/60 bg-amber-900/20 p-3 text-sm text-amber-300">
           {notice}
         </div>
       )}
@@ -215,7 +215,7 @@ export default function RatesPage() {
         <CardHeader className="flex items-center justify-between">
           <h2 className="text-sm font-semibold text-white">Portfolio-Wide Rates</h2>
           {portfolio?.as_of && (
-            <span className="text-xs text-slate-500">
+            <span className="text-xs text-zinc-500">
               as of {new Date(portfolio.as_of).toLocaleString()} · {portfolio.window_days ?? 60}d window
             </span>
           )}
@@ -228,15 +228,15 @@ export default function RatesPage() {
                 const status = statusOf(portfolio, k)
                 const limit = LIMITS[k]
                 return (
-                  <div key={k} className="rounded-xl border border-slate-800 bg-slate-900/40 p-4">
+                  <div key={k} className="rounded-xl border border-zinc-800 bg-zinc-900/40 p-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                      <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
                         {RATE_LABELS[k]}
                       </span>
                       <Badge tone={statusTone(status)}>{status}</Badge>
                     </div>
                     <div className="mt-2 text-3xl font-semibold tabular-nums text-white">{pct(rate)}</div>
-                    <div className="mt-1 text-xs text-slate-500">
+                    <div className="mt-1 text-xs text-zinc-500">
                       headroom {pct(headroom(rate, limit))} of {limit}% limit
                     </div>
                     <div className="mt-3">
@@ -247,7 +247,7 @@ export default function RatesPage() {
               })}
             </div>
           ) : (
-            <p className="text-sm text-slate-500">
+            <p className="text-sm text-zinc-500">
               No portfolio snapshot yet. Run a recompute after adding entries and returns.
             </p>
           )}
@@ -279,12 +279,12 @@ export default function RatesPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search originators..."
-            className="min-w-[200px] flex-1 rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+            className="min-w-[200px] flex-1 rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
           />
           <select
             value={statusFilter}
             onChange={(e) => setStatusFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none"
           >
             <option value="all">All statuses</option>
             <option value="clear">Clear</option>
@@ -295,7 +295,7 @@ export default function RatesPage() {
           <select
             value={rateFocus}
             onChange={(e) => setRateFocus(e.target.value as 'all' | RateKind)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none"
           >
             <option value="all">All rate types</option>
             <option value="unauthorized">Unauthorized</option>
@@ -305,7 +305,7 @@ export default function RatesPage() {
           <select
             value={sortKey}
             onChange={(e) => setSortKey(e.target.value as RateKind)}
-            className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-emerald-500 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none"
           >
             <option value="overall">Sort by overall</option>
             <option value="unauthorized">Sort by unauthorized</option>
@@ -356,7 +356,7 @@ export default function RatesPage() {
                     <TD className="font-medium text-white">
                       <div>{originatorLabel(r)}</div>
                       {r.as_of && (
-                        <div className="text-[11px] text-slate-500">
+                        <div className="text-[11px] text-zinc-500">
                           {r.window_days ?? 60}d · {new Date(r.as_of).toLocaleDateString()}
                         </div>
                       )}
@@ -370,7 +370,7 @@ export default function RatesPage() {
                           <div className="flex flex-col items-end gap-1.5">
                             <Badge tone={statusTone(status)}>{status}</Badge>
                             <RateMeter rate={rate} limit={limit} status={status} />
-                            <span className="text-[10px] text-slate-500">
+                            <span className="text-[10px] text-zinc-500">
                               headroom {pct(headroom(rate, limit))}
                             </span>
                           </div>

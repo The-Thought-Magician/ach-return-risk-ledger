@@ -230,7 +230,7 @@ export default function AlertRulesPage() {
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-xl font-semibold text-white">Alert Rules</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Define the conditions that fire compliance alerts. Rules are evaluated on demand from the
             Alerts inbox and on the monitoring schedule.
           </p>
@@ -241,7 +241,7 @@ export default function AlertRulesPage() {
       </header>
 
       {notice && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
           {notice}
         </div>
       )}
@@ -264,7 +264,7 @@ export default function AlertRulesPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search rules…"
-            className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+            className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
           />
         </CardHeader>
         <CardBody>
@@ -297,11 +297,11 @@ export default function AlertRulesPage() {
                   return (
                     <TR key={r.id}>
                       <TD className="font-medium text-white">{r.name}</TD>
-                      <TD className="text-slate-300">{triggerLabel}</TD>
+                      <TD className="text-zinc-300">{triggerLabel}</TD>
                       <TD>
                         <Badge tone={severityTone(r.severity)}>{r.severity}</Badge>
                       </TD>
-                      <TD className="text-slate-400">
+                      <TD className="text-zinc-400">
                         {r.target === 'originator' && r.target_value
                           ? `originator ${String(r.target_value).slice(0, 8)}`
                           : r.target ?? 'portfolio'}
@@ -439,12 +439,12 @@ export default function AlertRulesPage() {
               className={`${inputClass} font-mono text-xs`}
             />
           </Field>
-          <label className="flex items-center gap-2 text-sm text-slate-300">
+          <label className="flex items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={form.enabled}
               onChange={(e) => setForm({ ...form, enabled: e.target.checked })}
-              className="h-4 w-4 rounded border-slate-600 bg-slate-950 text-emerald-500 focus:ring-emerald-500/50"
+              className="h-4 w-4 rounded border-zinc-600 bg-zinc-950 text-amber-500 focus:ring-amber-500/50"
             />
             Enabled
           </label>
@@ -455,7 +455,7 @@ export default function AlertRulesPage() {
 }
 
 const inputClass =
-  'w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none'
+  'w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none'
 
 function Field({
   label,
@@ -468,11 +468,11 @@ function Field({
 }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
         {label}
       </span>
       {children}
-      {hint && <span className="mt-1 block text-[11px] text-slate-600">{hint}</span>}
+      {hint && <span className="mt-1 block text-[11px] text-zinc-600">{hint}</span>}
     </label>
   )
 }

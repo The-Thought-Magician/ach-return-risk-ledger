@@ -88,7 +88,7 @@ function UrgencyBar({ days }: { days?: number | null }) {
   const tone = breachTone(days)
   const color = tone === 'breach' ? '#f87171' : tone === 'warning' ? '#fb923c' : tone === 'watch' ? '#fbbf24' : '#334155'
   return (
-    <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+    <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
       <div className="h-full rounded-full transition-all" style={{ width: `${filled}%`, backgroundColor: color }} />
     </div>
   )
@@ -231,7 +231,7 @@ export default function ForecastsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-bold text-white">Breach Forecasts</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Projected days-to-breach per originator using linear and EWMA velocity models.
           </p>
         </div>
@@ -244,7 +244,7 @@ export default function ForecastsPage() {
         <div className="rounded-lg border border-red-700/60 bg-red-900/30 p-3 text-sm text-red-300">{error}</div>
       )}
       {notice && (
-        <div className="rounded-lg border border-emerald-700/60 bg-emerald-900/20 p-3 text-sm text-emerald-300">
+        <div className="rounded-lg border border-amber-700/60 bg-amber-900/20 p-3 text-sm text-amber-300">
           {notice}
         </div>
       )}
@@ -291,15 +291,15 @@ export default function ForecastsPage() {
               <TBody>
                 {ranking.map((f, i) => (
                   <TR key={f.id ?? `${f.originator_id}-${f.rate_type}-${i}`}>
-                    <TD className="text-slate-500 tabular-nums">{i + 1}</TD>
+                    <TD className="text-zinc-500 tabular-nums">{i + 1}</TD>
                     <TD className="font-medium text-white">{forecastOriginator(f)}</TD>
                     <TD>
-                      <span className="text-slate-300">{RATE_LABELS[f.rate_type] ?? f.rate_type}</span>
-                      <span className="ml-2 text-[10px] uppercase text-slate-500">{f.model}</span>
+                      <span className="text-zinc-300">{RATE_LABELS[f.rate_type] ?? f.rate_type}</span>
+                      <span className="ml-2 text-[10px] uppercase text-zinc-500">{f.model}</span>
                     </TD>
                     <TD className="text-right tabular-nums">{pct(f.current_rate)}</TD>
                     <TD className="text-right tabular-nums">
-                      <span className={f.velocity_per_day > 0 ? 'text-amber-300' : 'text-emerald-300'}>
+                      <span className={f.velocity_per_day > 0 ? 'text-amber-300' : 'text-amber-300'}>
                         {f.velocity_per_day > 0 ? '+' : ''}
                         {f.velocity_per_day.toFixed(4)}
                       </span>
@@ -310,7 +310,7 @@ export default function ForecastsPage() {
                     <TD className="text-right">
                       <Badge tone={statusTone(breachTone(f.days_to_breach))}>{breachLabel(f.days_to_breach)}</Badge>
                     </TD>
-                    <TD className="whitespace-nowrap text-slate-400">{fmtDate(f.projected_breach_date)}</TD>
+                    <TD className="whitespace-nowrap text-zinc-400">{fmtDate(f.projected_breach_date)}</TD>
                   </TR>
                 ))}
               </TBody>
@@ -325,16 +325,16 @@ export default function ForecastsPage() {
           <h2 className="text-sm font-semibold text-white">What-If Projection</h2>
         </CardHeader>
         <CardBody>
-          <p className="mb-4 text-sm text-slate-400">
+          <p className="mb-4 text-sm text-zinc-400">
             Project the effect of adding returns or entries to an originator without persisting anything.
           </p>
           <form onSubmit={runWhatIf} className="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
             <div className="sm:col-span-2">
-              <label className="mb-1 block text-sm font-medium text-slate-300">Originator</label>
+              <label className="mb-1 block text-sm font-medium text-zinc-300">Originator</label>
               <select
                 value={wiOriginator}
                 onChange={(e) => setWiOriginator(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none"
               >
                 <option value="">Select originator...</option>
                 {originatorOptions.map((o) => (
@@ -345,11 +345,11 @@ export default function ForecastsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Rate Type</label>
+              <label className="mb-1 block text-sm font-medium text-zinc-300">Rate Type</label>
               <select
                 value={wiRateType}
                 onChange={(e) => setWiRateType(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none"
               >
                 <option value="overall">Overall</option>
                 <option value="unauthorized">Unauthorized</option>
@@ -357,23 +357,23 @@ export default function ForecastsPage() {
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Extra Returns</label>
+              <label className="mb-1 block text-sm font-medium text-zinc-300">Extra Returns</label>
               <input
                 type="number"
                 min="0"
                 value={wiExtraReturns}
                 onChange={(e) => setWiExtraReturns(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-sm font-medium text-slate-300">Extra Entries</label>
+              <label className="mb-1 block text-sm font-medium text-zinc-300">Extra Entries</label>
               <input
                 type="number"
                 min="0"
                 value={wiExtraEntries}
                 onChange={(e) => setWiExtraEntries(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-sm text-white focus:border-emerald-500 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm text-white focus:border-amber-500 focus:outline-none"
               />
             </div>
             <div className="sm:col-span-2 lg:col-span-5">
@@ -390,7 +390,7 @@ export default function ForecastsPage() {
           )}
 
           {wiResult && (
-            <div className="mt-5 rounded-xl border border-slate-800 bg-slate-900/40 p-5">
+            <div className="mt-5 rounded-xl border border-zinc-800 bg-zinc-900/40 p-5">
               <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
                 <Stat label="Current Rate" value={pct(wiCurrent)} />
                 <Stat
@@ -424,11 +424,11 @@ export default function ForecastsPage() {
                 />
               </div>
               {wiResult.projected_breach_date && (
-                <p className="mt-3 text-xs text-slate-500">
+                <p className="mt-3 text-xs text-zinc-500">
                   Projected breach date: {fmtDate(wiResult.projected_breach_date)}
                 </p>
               )}
-              {wiResult.message && <p className="mt-2 text-sm text-slate-400">{wiResult.message}</p>}
+              {wiResult.message && <p className="mt-2 text-sm text-zinc-400">{wiResult.message}</p>}
             </div>
           )}
         </CardBody>
@@ -443,12 +443,12 @@ export default function ForecastsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search originators..."
-              className="min-w-[160px] rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-white placeholder-slate-500 focus:border-emerald-500 focus:outline-none"
+              className="min-w-[160px] rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm text-white placeholder-zinc-500 focus:border-amber-500 focus:outline-none"
             />
             <select
               value={rateFilter}
               onChange={(e) => setRateFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm text-white focus:border-amber-500 focus:outline-none"
             >
               <option value="all">All rates</option>
               <option value="unauthorized">Unauthorized</option>
@@ -458,18 +458,18 @@ export default function ForecastsPage() {
             <select
               value={modelFilter}
               onChange={(e) => setModelFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-white focus:border-emerald-500 focus:outline-none"
+              className="rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm text-white focus:border-amber-500 focus:outline-none"
             >
               <option value="all">All models</option>
               <option value="linear">Linear</option>
               <option value="ewma">EWMA</option>
             </select>
-            <label className="flex items-center gap-2 text-sm text-slate-400">
+            <label className="flex items-center gap-2 text-sm text-zinc-400">
               <input
                 type="checkbox"
                 checked={onlyBreaching}
                 onChange={(e) => setOnlyBreaching(e.target.checked)}
-                className="h-4 w-4 rounded border-slate-600 bg-slate-800 accent-emerald-500"
+                className="h-4 w-4 rounded border-zinc-600 bg-zinc-800 accent-amber-500"
               />
               Breaching only
             </label>
@@ -512,24 +512,24 @@ export default function ForecastsPage() {
                 {filtered.map((f, i) => (
                   <TR key={f.id ?? `${f.originator_id}-${f.rate_type}-${f.model}-${i}`}>
                     <TD className="font-medium text-white">{forecastOriginator(f)}</TD>
-                    <TD className="text-slate-300">{RATE_LABELS[f.rate_type] ?? f.rate_type}</TD>
+                    <TD className="text-zinc-300">{RATE_LABELS[f.rate_type] ?? f.rate_type}</TD>
                     <TD>
                       <Badge tone="info">{f.model}</Badge>
                     </TD>
                     <TD className="text-right tabular-nums">{pct(f.current_rate)}</TD>
                     <TD className="text-right tabular-nums">
-                      <span className={f.velocity_per_day > 0 ? 'text-amber-300' : 'text-emerald-300'}>
+                      <span className={f.velocity_per_day > 0 ? 'text-amber-300' : 'text-amber-300'}>
                         {f.velocity_per_day > 0 ? '+' : ''}
                         {f.velocity_per_day.toFixed(4)}
                       </span>
                     </TD>
-                    <TD className="text-right tabular-nums text-slate-400">
+                    <TD className="text-right tabular-nums text-zinc-400">
                       {Math.round((f.confidence ?? 0) * 100)}%
                     </TD>
                     <TD className="text-right">
                       <Badge tone={statusTone(breachTone(f.days_to_breach))}>{breachLabel(f.days_to_breach)}</Badge>
                     </TD>
-                    <TD className="whitespace-nowrap text-slate-400">{fmtDate(f.projected_breach_date)}</TD>
+                    <TD className="whitespace-nowrap text-zinc-400">{fmtDate(f.projected_breach_date)}</TD>
                   </TR>
                 ))}
               </TBody>

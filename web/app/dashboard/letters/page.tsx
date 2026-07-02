@@ -229,7 +229,7 @@ export default function LettersPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Warning Letters</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Track ODFI warning letters, inquiries and corrective-action notices with response deadlines.
           </p>
         </div>
@@ -251,7 +251,7 @@ export default function LettersPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200"
             >
               <option value="">All statuses</option>
               {STATUSES.map((s) => (
@@ -263,7 +263,7 @@ export default function LettersPage() {
             <select
               value={originatorFilter}
               onChange={(e) => setOriginatorFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200"
             >
               <option value="">All originators</option>
               {originators.map((o) => (
@@ -277,7 +277,7 @@ export default function LettersPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search subject, type, originator…"
-            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 sm:w-72"
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 sm:w-72"
           />
         </CardHeader>
         <CardBody className="p-0">
@@ -331,23 +331,23 @@ export default function LettersPage() {
                       <TD>
                         <button
                           onClick={() => openDetail(l)}
-                          className="text-left font-medium text-white hover:text-emerald-300"
+                          className="text-left font-medium text-white hover:text-amber-300"
                         >
                           {l.subject}
                         </button>
                       </TD>
-                      <TD className="text-slate-300">{orgName(l.originator_id)}</TD>
+                      <TD className="text-zinc-300">{orgName(l.originator_id)}</TD>
                       <TD>
                         <Badge tone="neutral">{l.letter_type}</Badge>
                       </TD>
-                      <TD className="text-slate-400">{l.related_rate_type ?? '—'}</TD>
-                      <TD className="text-slate-400">{fmtDate(l.received_date)}</TD>
+                      <TD className="text-zinc-400">{l.related_rate_type ?? '—'}</TD>
+                      <TD className="text-zinc-400">{fmtDate(l.received_date)}</TD>
                       <TD>
-                        <span className="text-slate-300">{fmtDate(l.response_due_date)}</span>
+                        <span className="text-zinc-300">{fmtDate(l.response_due_date)}</span>
                         {du !== null && !settled && (
                           <span
                             className={`ml-2 text-xs ${
-                              du < 0 ? 'text-red-400' : du <= 7 ? 'text-amber-400' : 'text-slate-500'
+                              du < 0 ? 'text-red-400' : du <= 7 ? 'text-amber-400' : 'text-zinc-500'
                             }`}
                           >
                             {du < 0 ? `${Math.abs(du)}d overdue` : `${du}d left`}
@@ -362,7 +362,7 @@ export default function LettersPage() {
                           {!settled && (
                             <button
                               onClick={() => quickStatus(l, 'resolved')}
-                              className="text-xs text-emerald-400 hover:text-emerald-300"
+                              className="text-xs text-amber-400 hover:text-amber-300"
                             >
                               Resolve
                             </button>
@@ -415,7 +415,7 @@ export default function LettersPage() {
             <select
               value={form.originator_id}
               onChange={(e) => setForm({ ...form, originator_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
             >
               <option value="">Select originator…</option>
               {originators.map((o) => (
@@ -431,7 +431,7 @@ export default function LettersPage() {
               value={form.subject}
               onChange={(e) => setForm({ ...form, subject: e.target.value })}
               placeholder="e.g. Unauthorized return rate exceeded 0.5%"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600"
             />
           </Field>
           <div className="grid grid-cols-2 gap-4">
@@ -439,7 +439,7 @@ export default function LettersPage() {
               <select
                 value={form.letter_type}
                 onChange={(e) => setForm({ ...form, letter_type: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               >
                 {LETTER_TYPES.map((t) => (
                   <option key={t} value={t}>
@@ -452,7 +452,7 @@ export default function LettersPage() {
               <select
                 value={form.related_rate_type}
                 onChange={(e) => setForm({ ...form, related_rate_type: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               >
                 {RATE_TYPES.map((t) => (
                   <option key={t} value={t}>
@@ -468,7 +468,7 @@ export default function LettersPage() {
                 type="date"
                 value={form.received_date}
                 onChange={(e) => setForm({ ...form, received_date: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               />
             </Field>
             <Field label="Response due">
@@ -476,7 +476,7 @@ export default function LettersPage() {
                 type="date"
                 value={form.response_due_date}
                 onChange={(e) => setForm({ ...form, response_due_date: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               />
             </Field>
           </div>
@@ -484,7 +484,7 @@ export default function LettersPage() {
             <select
               value={form.status}
               onChange={(e) => setForm({ ...form, status: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
             >
               {STATUSES.map((s) => (
                 <option key={s} value={s}>
@@ -499,7 +499,7 @@ export default function LettersPage() {
               onChange={(e) => setForm({ ...form, body: e.target.value })}
               rows={4}
               placeholder="Letter text, required actions, internal notes…"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600"
             />
           </Field>
         </div>
@@ -522,13 +522,13 @@ export default function LettersPage() {
       >
         {detail && (
           <div className="space-y-4 text-sm">
-            {detailLoading && <p className="text-xs text-slate-500">Loading full detail…</p>}
+            {detailLoading && <p className="text-xs text-zinc-500">Loading full detail…</p>}
             <div className="flex flex-wrap items-center gap-2">
               <Badge tone="neutral">{detail.letter_type}</Badge>
               <Badge tone={statusTone(detail.status)}>{detail.status}</Badge>
               {detail.related_rate_type && <Badge tone="info">{detail.related_rate_type} rate</Badge>}
             </div>
-            <div className="grid grid-cols-2 gap-3 text-slate-300">
+            <div className="grid grid-cols-2 gap-3 text-zinc-300">
               <Detail label="Originator" value={orgName(detail.originator_id)} />
               <Detail label="Received" value={fmtDate(detail.received_date)} />
               <Detail label="Response due" value={fmtDate(detail.response_due_date)} />
@@ -536,8 +536,8 @@ export default function LettersPage() {
             </div>
             {detail.body && (
               <div>
-                <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">Body</div>
-                <p className="whitespace-pre-wrap rounded-lg border border-slate-800 bg-slate-950/40 p-3 text-slate-200">
+                <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">Body</div>
+                <p className="whitespace-pre-wrap rounded-lg border border-zinc-800 bg-zinc-950/40 p-3 text-zinc-200">
                   {detail.body}
                 </p>
               </div>
@@ -550,8 +550,8 @@ export default function LettersPage() {
                   disabled={detail.status === s}
                   className={`rounded-md border px-2.5 py-1 text-xs ${
                     detail.status === s
-                      ? 'border-emerald-500/40 bg-emerald-500/10 text-emerald-300'
-                      : 'border-slate-700 text-slate-400 hover:bg-slate-800'
+                      ? 'border-amber-500/40 bg-amber-500/10 text-amber-300'
+                      : 'border-zinc-700 text-zinc-400 hover:bg-zinc-800'
                   }`}
                 >
                   {s}
@@ -568,7 +568,7 @@ export default function LettersPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
       {children}
     </label>
   )
@@ -577,8 +577,8 @@ function Field({ label, children }: { label: string; children: React.ReactNode }
 function Detail({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div>
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</div>
-      <div className="mt-0.5 text-slate-200">{value}</div>
+      <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</div>
+      <div className="mt-0.5 text-zinc-200">{value}</div>
     </div>
   )
 }

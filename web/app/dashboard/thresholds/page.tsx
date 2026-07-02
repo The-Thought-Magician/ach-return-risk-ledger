@@ -173,7 +173,7 @@ export default function ThresholdsPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-2xl font-bold text-white">Thresholds</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <p className="mt-1 text-sm text-zinc-400">
           Configure return-rate limits and the watch/warning bands used to classify each originator.
         </p>
       </div>
@@ -182,7 +182,7 @@ export default function ThresholdsPage() {
         <div className="rounded-lg border border-red-700/60 bg-red-900/30 p-3 text-sm text-red-300">{error}</div>
       )}
       {notice && (
-        <div className="rounded-lg border border-emerald-700/60 bg-emerald-900/20 p-3 text-sm text-emerald-300">
+        <div className="rounded-lg border border-amber-700/60 bg-amber-900/20 p-3 text-sm text-amber-300">
           {notice}
         </div>
       )}
@@ -207,7 +207,7 @@ export default function ThresholdsPage() {
             <button
               type="button"
               onClick={resetToNacha}
-              className="text-xs text-emerald-400 hover:text-emerald-300"
+              className="text-xs text-amber-400 hover:text-amber-300"
             >
               Reset limits to NACHA
             </button>
@@ -223,16 +223,16 @@ export default function ThresholdsPage() {
                 <div className="grid gap-4 sm:grid-cols-2">
                   {fields.map((fld) => (
                     <div key={fld.key}>
-                      <label className="mb-1 block text-sm font-medium text-slate-300">{fld.label}</label>
+                      <label className="mb-1 block text-sm font-medium text-zinc-300">{fld.label}</label>
                       <input
                         type="number"
                         step={fld.step}
                         min="0"
                         value={form[fld.key]}
                         onChange={(e) => setField(fld.key, e.target.value)}
-                        className="w-full rounded-lg border border-slate-700 bg-slate-800 px-3 py-2 text-white focus:border-emerald-500 focus:outline-none"
+                        className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-white focus:border-amber-500 focus:outline-none"
                       />
-                      <p className="mt-1 text-xs text-slate-500">{fld.hint}</p>
+                      <p className="mt-1 text-xs text-zinc-500">{fld.hint}</p>
                     </div>
                   ))}
                 </div>
@@ -246,7 +246,7 @@ export default function ThresholdsPage() {
                 </div>
               </form>
             ) : (
-              <p className="text-sm text-slate-500">Thresholds unavailable.</p>
+              <p className="text-sm text-zinc-500">Thresholds unavailable.</p>
             )}
           </CardBody>
         </Card>
@@ -256,11 +256,11 @@ export default function ThresholdsPage() {
           <CardHeader>
             <h2 className="text-sm font-semibold text-white">How status is classified</h2>
           </CardHeader>
-          <CardBody className="space-y-3 text-sm text-slate-400">
+          <CardBody className="space-y-3 text-sm text-zinc-400">
             <div className="flex items-start gap-3">
-              <span className="mt-1 h-3 w-3 shrink-0 rounded-full bg-emerald-400" />
+              <span className="mt-1 h-3 w-3 shrink-0 rounded-full bg-amber-400" />
               <span>
-                <span className="font-medium text-emerald-300">Clear</span> — rate below the watch band.
+                <span className="font-medium text-amber-300">Clear</span> — rate below the watch band.
               </span>
             </div>
             <div className="flex items-start gap-3">
@@ -283,7 +283,7 @@ export default function ThresholdsPage() {
                 <span className="font-medium text-red-300">Breach</span> — at or above the limit.
               </span>
             </div>
-            <p className="pt-2 text-xs text-slate-500">
+            <p className="pt-2 text-xs text-zinc-500">
               Changes apply on the next rate recompute and are recorded in the change history below.
             </p>
           </CardBody>
@@ -320,14 +320,14 @@ export default function ThresholdsPage() {
               <TBody>
                 {history.map((h, i) => (
                   <TR key={h.id ?? i}>
-                    <TD className="whitespace-nowrap text-slate-300">{fmtDate(h.effective_at ?? h.created_at)}</TD>
+                    <TD className="whitespace-nowrap text-zinc-300">{fmtDate(h.effective_at ?? h.created_at)}</TD>
                     <TD className="text-right tabular-nums">{h.unauthorized_limit}%</TD>
                     <TD className="text-right tabular-nums">{h.admin_limit}%</TD>
                     <TD className="text-right tabular-nums">{h.overall_limit}%</TD>
                     <TD className="text-right tabular-nums">{Math.round(h.watch_pct * 100)}%</TD>
                     <TD className="text-right tabular-nums">{Math.round(h.warning_pct * 100)}%</TD>
                     <TD className="text-right tabular-nums">{h.window_days}d</TD>
-                    <TD className="truncate text-slate-400">{h.changed_by ?? '—'}</TD>
+                    <TD className="truncate text-zinc-400">{h.changed_by ?? '—'}</TD>
                   </TR>
                 ))}
               </TBody>

@@ -106,19 +106,19 @@ function RateGauge({
         ? 'bg-orange-500'
         : tone === 'watch'
           ? 'bg-amber-500'
-          : 'bg-emerald-500'
+          : 'bg-amber-500'
   const headroom = Math.max(0, limit - value)
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+    <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+        <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
         <Badge tone={tone}>{status ?? 'n/a'}</Badge>
       </div>
       <div className="mt-2 text-2xl font-semibold tabular-nums text-white">{pct(value)}</div>
-      <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-slate-800">
+      <div className="mt-3 h-2.5 w-full overflow-hidden rounded-full bg-zinc-800">
         <div className={`h-full rounded-full transition-all ${barColor}`} style={{ width: `${fillPct}%` }} />
       </div>
-      <div className="mt-1.5 flex justify-between text-[11px] text-slate-500">
+      <div className="mt-1.5 flex justify-between text-[11px] text-zinc-500">
         <span>limit {pct(limit)}</span>
         <span>headroom {pct(headroom)}</span>
       </div>
@@ -128,7 +128,7 @@ function RateGauge({
 
 function Sparkline({ data, tone = 'emerald' }: { data: number[]; tone?: string }) {
   if (!data || data.length === 0) {
-    return <div className="h-10 w-full rounded bg-slate-800/40" />
+    return <div className="h-10 w-full rounded bg-zinc-800/40" />
   }
   const w = 120
   const h = 36
@@ -216,7 +216,7 @@ export default function DashboardPage() {
       <div className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h1 className="text-xl font-bold text-white">Portfolio Overview</h1>
-          <p className="mt-0.5 text-sm text-slate-500">
+          <p className="mt-0.5 text-sm text-zinc-500">
             NACHA return-rate posture across {totalOriginators} originator{totalOriginators === 1 ? '' : 's'}.
           </p>
         </div>
@@ -238,7 +238,7 @@ export default function DashboardPage() {
       <Card>
         <CardHeader>
           <h2 className="text-sm font-semibold text-white">Portfolio Return Rates</h2>
-          <p className="mt-0.5 text-xs text-slate-500">
+          <p className="mt-0.5 text-xs text-zinc-500">
             Rolling-window rates vs NACHA thresholds. Denominator {rates?.debit_count ?? 0} debit entries,{' '}
             {rates?.total_returns ?? 0} returns.
           </p>
@@ -310,12 +310,12 @@ export default function DashboardPage() {
                 )
                 const last = values.length ? values[values.length - 1] : 0
                 return (
-                  <div key={key} className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+                  <div key={key} className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
                     <div className="flex items-center justify-between">
-                      <span className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                      <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">
                         {key.replace(/_/g, ' ')}
                       </span>
-                      <span className="text-sm font-semibold tabular-nums text-slate-200">
+                      <span className="text-sm font-semibold tabular-nums text-zinc-200">
                         {pct(last)}
                       </span>
                     </div>
@@ -335,7 +335,7 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">Top At-Risk Originators</h2>
-            <Link href="/dashboard/forecasts" className="text-xs font-medium text-emerald-400 hover:text-emerald-300">
+            <Link href="/dashboard/forecasts" className="text-xs font-medium text-amber-400 hover:text-amber-300">
               View forecasts →
             </Link>
           </CardHeader>
@@ -353,11 +353,11 @@ export default function DashboardPage() {
                   <Link
                     key={id}
                     href={`/dashboard/originators/${id}`}
-                    className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2.5 transition-colors hover:border-slate-700 hover:bg-slate-800/40"
+                    className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 py-2.5 transition-colors hover:border-zinc-700 hover:bg-zinc-800/40"
                   >
                     <div className="min-w-0">
-                      <div className="truncate text-sm font-medium text-slate-200">{name}</div>
-                      <div className="text-xs text-slate-500">
+                      <div className="truncate text-sm font-medium text-zinc-200">{name}</div>
+                      <div className="text-xs text-zinc-500">
                         {rate != null ? pct(rate) : '—'}
                         {dtb != null && ` · breach in ${dtb}d`}
                       </div>
@@ -374,7 +374,7 @@ export default function DashboardPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">Recent Alerts</h2>
-            <Link href="/dashboard/alerts" className="text-xs font-medium text-emerald-400 hover:text-emerald-300">
+            <Link href="/dashboard/alerts" className="text-xs font-medium text-amber-400 hover:text-amber-300">
               View inbox →
             </Link>
           </CardHeader>
@@ -385,11 +385,11 @@ export default function DashboardPage() {
               recentAlerts.slice(0, 8).map((alert: any) => (
                 <div
                   key={alert.id}
-                  className="flex items-start justify-between gap-3 rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2.5"
+                  className="flex items-start justify-between gap-3 rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 py-2.5"
                 >
                   <div className="min-w-0">
-                    <div className="truncate text-sm font-medium text-slate-200">{alert.title}</div>
-                    <div className="text-xs text-slate-500">{fmtDate(alert.fired_at)}</div>
+                    <div className="truncate text-sm font-medium text-zinc-200">{alert.title}</div>
+                    <div className="text-xs text-zinc-500">{fmtDate(alert.fired_at)}</div>
                   </div>
                   <Badge tone={statusTone(alert.severity ?? alert.status)}>
                     {alert.severity ?? alert.status ?? 'info'}
@@ -412,13 +412,13 @@ export default function DashboardPage() {
               <Link
                 key={f.id}
                 href={`/dashboard/originators/${f.originator_id}`}
-                className="flex items-center justify-between rounded-lg border border-slate-800 bg-slate-900/40 px-3 py-2.5 hover:bg-slate-800/40"
+                className="flex items-center justify-between rounded-lg border border-zinc-800 bg-zinc-900/40 px-3 py-2.5 hover:bg-zinc-800/40"
               >
                 <div className="min-w-0">
-                  <div className="truncate text-sm font-medium text-slate-200">
+                  <div className="truncate text-sm font-medium text-zinc-200">
                     {f.originator_name ?? f.originator_id}
                   </div>
-                  <div className="text-xs text-slate-500">
+                  <div className="text-xs text-zinc-500">
                     {f.rate_type ?? 'overall'} · {pct(f.current_rate)} · {fmtDate(f.projected_breach_date)}
                   </div>
                 </div>

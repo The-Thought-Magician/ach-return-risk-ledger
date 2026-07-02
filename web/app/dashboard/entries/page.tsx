@@ -254,7 +254,7 @@ export default function EntriesPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-xl font-semibold text-white">Originated Entries</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             The originated-entry ledger. Debit entries form the denominator for NACHA return-rate
             calculations and open 60-day dispute windows.
           </p>
@@ -273,15 +273,15 @@ export default function EntriesPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Filters</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Filters</h2>
         </CardHeader>
         <CardBody className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-6">
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Originator
             <select
               value={filterOriginator}
               onChange={(e) => setFilterOriginator(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
             >
               <option value="">All</option>
               {originators.map((o) => (
@@ -291,12 +291,12 @@ export default function EntriesPage() {
               ))}
             </select>
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             SEC Code
             <select
               value={filterSec}
               onChange={(e) => setFilterSec(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
             >
               <option value="">All</option>
               {SEC_CODES.map((s) => (
@@ -306,12 +306,12 @@ export default function EntriesPage() {
               ))}
             </select>
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Direction
             <select
               value={filterDirection}
               onChange={(e) => setFilterDirection(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
             >
               <option value="">All</option>
               {DIRECTIONS.map((d) => (
@@ -321,32 +321,32 @@ export default function EntriesPage() {
               ))}
             </select>
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             From
             <input
               type="date"
               value={fromDate}
               onChange={(e) => setFromDate(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
             />
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             To
             <input
               type="date"
               value={toDate}
               onChange={(e) => setToDate(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
             />
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Search
             <input
               type="text"
               placeholder="trace / ref / originator"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600"
             />
           </label>
           <div className="md:col-span-3 lg:col-span-6">
@@ -359,19 +359,19 @@ export default function EntriesPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">SEC Code Mix</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">SEC Code Mix</h2>
         </CardHeader>
         <CardBody className="space-y-2">
           {secDist.map((s) => (
             <div key={s.code} className="flex items-center gap-3">
-              <span className="w-12 text-xs font-medium text-slate-400">{s.code}</span>
-              <div className="h-3 flex-1 overflow-hidden rounded-full bg-slate-800">
+              <span className="w-12 text-xs font-medium text-zinc-400">{s.code}</span>
+              <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
                 <div
-                  className="h-full rounded-full bg-emerald-500/70"
+                  className="h-full rounded-full bg-amber-500/70"
                   style={{ width: `${s.pct}%` }}
                 />
               </div>
-              <span className="w-10 text-right text-xs tabular-nums text-slate-400">{s.count}</span>
+              <span className="w-10 text-right text-xs tabular-nums text-zinc-400">{s.count}</span>
             </div>
           ))}
         </CardBody>
@@ -385,8 +385,8 @@ export default function EntriesPage() {
 
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">Ledger</h2>
-          <span className="text-xs text-slate-500">{visible.length} rows</span>
+          <h2 className="text-sm font-semibold text-zinc-200">Ledger</h2>
+          <span className="text-xs text-zinc-500">{visible.length} rows</span>
         </CardHeader>
         <CardBody className="p-0">
           {loading ? (
@@ -433,8 +433,8 @@ export default function EntriesPage() {
                       <Badge tone="neutral">{e.sec_code}</Badge>
                     </TD>
                     <TD className="text-right tabular-nums">{fmtUSD(e.amount_cents)}</TD>
-                    <TD className="font-mono text-xs text-slate-400">{e.trace_number || '—'}</TD>
-                    <TD className="text-xs text-slate-400">{e.external_ref || '—'}</TD>
+                    <TD className="font-mono text-xs text-zinc-400">{e.trace_number || '—'}</TD>
+                    <TD className="text-xs text-zinc-400">{e.external_ref || '—'}</TD>
                     <TD className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button variant="secondary" className="px-2 py-1 text-xs" onClick={() => openEdit(e)}>
@@ -480,11 +480,11 @@ export default function EntriesPage() {
             </div>
           )}
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-300">Originator</span>
+            <span className="mb-1 block text-zinc-300">Originator</span>
             <select
               value={form.originator_id}
               onChange={(e) => setForm({ ...form, originator_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               required
             >
               <option value="">Select originator</option>
@@ -497,32 +497,32 @@ export default function EntriesPage() {
           </label>
           <div className="grid grid-cols-2 gap-3">
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Entry Date</span>
+              <span className="mb-1 block text-zinc-300">Entry Date</span>
               <input
                 type="date"
                 value={form.entry_date}
                 onChange={(e) => setForm({ ...form, entry_date: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
                 required
               />
             </label>
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Settlement Date</span>
+              <span className="mb-1 block text-zinc-300">Settlement Date</span>
               <input
                 type="date"
                 value={form.settlement_date}
                 onChange={(e) => setForm({ ...form, settlement_date: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               />
             </label>
           </div>
           <div className="grid grid-cols-2 gap-3">
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Direction</span>
+              <span className="mb-1 block text-zinc-300">Direction</span>
               <select
                 value={form.direction}
                 onChange={(e) => setForm({ ...form, direction: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               >
                 {DIRECTIONS.map((d) => (
                   <option key={d} value={d}>
@@ -532,11 +532,11 @@ export default function EntriesPage() {
               </select>
             </label>
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">SEC Code</span>
+              <span className="mb-1 block text-zinc-300">SEC Code</span>
               <select
                 value={form.sec_code}
                 onChange={(e) => setForm({ ...form, sec_code: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               >
                 {SEC_CODES.map((s) => (
                   <option key={s} value={s}>
@@ -547,7 +547,7 @@ export default function EntriesPage() {
             </label>
           </div>
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-300">Amount (USD)</span>
+            <span className="mb-1 block text-zinc-300">Amount (USD)</span>
             <input
               type="number"
               step="0.01"
@@ -555,27 +555,27 @@ export default function EntriesPage() {
               value={form.amount}
               onChange={(e) => setForm({ ...form, amount: e.target.value })}
               placeholder="0.00"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               required
             />
           </label>
           <div className="grid grid-cols-2 gap-3">
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Trace Number</span>
+              <span className="mb-1 block text-zinc-300">Trace Number</span>
               <input
                 type="text"
                 value={form.trace_number}
                 onChange={(e) => setForm({ ...form, trace_number: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               />
             </label>
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">External Ref</span>
+              <span className="mb-1 block text-zinc-300">External Ref</span>
               <input
                 type="text"
                 value={form.external_ref}
                 onChange={(e) => setForm({ ...form, external_ref: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               />
             </label>
           </div>

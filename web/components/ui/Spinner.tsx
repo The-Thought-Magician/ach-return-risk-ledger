@@ -7,10 +7,10 @@ export function Spinner({ className = '', label }: SpinnerProps) {
   return (
     <div className={`flex items-center justify-center gap-3 ${className}`}>
       <span
-        className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-slate-700 border-t-emerald-400"
+        className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-zinc-700 border-t-amber-400"
         aria-hidden
       />
-      {label && <span className="text-sm text-slate-400">{label}</span>}
+      {label && <span className="text-sm text-zinc-400">{label}</span>}
     </div>
   )
 }

@@ -210,7 +210,7 @@ export default function AlertsPage() {
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-xl font-semibold text-white">Alert Inbox</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Compliance alerts fired by your rules. Acknowledge to record action, snooze to defer, or
             evaluate now to re-run all enabled rules against current data.
           </p>
@@ -221,7 +221,7 @@ export default function AlertsPage() {
       </header>
 
       {notice && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
           {notice}
         </div>
       )}
@@ -240,7 +240,7 @@ export default function AlertsPage() {
       <Card>
         <CardHeader className="flex flex-wrap items-center gap-4">
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wide text-slate-500">Status</span>
+            <span className="text-xs uppercase tracking-wide text-zinc-500">Status</span>
             <div className="flex gap-1">
               {STATUS_FILTERS.map((s) => (
                 <button
@@ -248,8 +248,8 @@ export default function AlertsPage() {
                   onClick={() => setStatusFilter(s)}
                   className={`rounded-md px-2.5 py-1 text-xs font-medium capitalize ${
                     statusFilter === s
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-amber-600 text-white'
+                      : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
                   }`}
                 >
                   {s}
@@ -258,7 +258,7 @@ export default function AlertsPage() {
             </div>
           </div>
           <div className="flex items-center gap-2">
-            <span className="text-xs uppercase tracking-wide text-slate-500">Severity</span>
+            <span className="text-xs uppercase tracking-wide text-zinc-500">Severity</span>
             <div className="flex gap-1">
               {SEVERITY_FILTERS.map((s) => (
                 <button
@@ -266,8 +266,8 @@ export default function AlertsPage() {
                   onClick={() => setSeverityFilter(s)}
                   className={`rounded-md px-2.5 py-1 text-xs font-medium capitalize ${
                     severityFilter === s
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-amber-600 text-white'
+                      : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
                   }`}
                 >
                   {s}
@@ -288,7 +288,7 @@ export default function AlertsPage() {
               }
             />
           ) : (
-            <ul className="divide-y divide-slate-800">
+            <ul className="divide-y divide-zinc-800">
               {alerts.map((a) => {
                 const isUnread = ['open', 'unread'].includes((a.status ?? '').toLowerCase())
                 return (
@@ -302,14 +302,14 @@ export default function AlertsPage() {
                     >
                       <span
                         className={`mt-1.5 h-2 w-2 shrink-0 rounded-full ${
-                          isUnread ? 'bg-emerald-400' : 'bg-slate-700'
+                          isUnread ? 'bg-amber-400' : 'bg-zinc-700'
                         }`}
                         aria-hidden
                       />
                       <span className="min-w-0">
                         <span className="flex flex-wrap items-center gap-2">
                           <span
-                            className={`truncate text-sm ${isUnread ? 'font-semibold text-white' : 'text-slate-300'}`}
+                            className={`truncate text-sm ${isUnread ? 'font-semibold text-white' : 'text-zinc-300'}`}
                           >
                             {a.title}
                           </span>
@@ -317,9 +317,9 @@ export default function AlertsPage() {
                           <Badge tone={statusBadgeTone(a.status)}>{a.status}</Badge>
                         </span>
                         {a.body && (
-                          <span className="mt-0.5 block truncate text-xs text-slate-500">{a.body}</span>
+                          <span className="mt-0.5 block truncate text-xs text-zinc-500">{a.body}</span>
                         )}
-                        <span className="mt-0.5 block text-[11px] text-slate-600">
+                        <span className="mt-0.5 block text-[11px] text-zinc-600">
                           Fired {fmtTime(a.fired_at ?? a.created_at)}
                           {a.status?.toLowerCase() === 'snoozed' && a.snoozed_until
                             ? ` · snoozed until ${fmtTime(a.snoozed_until)}`
@@ -397,11 +397,11 @@ export default function AlertsPage() {
             <div className="flex flex-wrap items-center gap-2">
               <Badge tone={severityTone(detail.severity)}>{detail.severity}</Badge>
               <Badge tone={statusBadgeTone(detail.status)}>{detail.status}</Badge>
-              <span className="text-xs text-slate-500">
+              <span className="text-xs text-zinc-500">
                 Fired {fmtTime(detail.fired_at ?? detail.created_at)}
               </span>
             </div>
-            {detail.body && <p className="text-sm text-slate-300">{detail.body}</p>}
+            {detail.body && <p className="text-sm text-zinc-300">{detail.body}</p>}
             <div className="grid grid-cols-2 gap-3 text-xs">
               <Meta label="Rule" value={detail.rule_id ? String(detail.rule_id).slice(0, 12) : '—'} />
               <Meta
@@ -415,10 +415,10 @@ export default function AlertsPage() {
             {detailLoading && <Spinner label="Refreshing…" className="justify-start" />}
             {detail.snapshot && Object.keys(detail.snapshot).length > 0 && (
               <div>
-                <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">
+                <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Snapshot at fire time
                 </div>
-                <pre className="max-h-56 overflow-auto rounded-lg border border-slate-800 bg-slate-950 p-3 text-xs text-slate-300">
+                <pre className="max-h-56 overflow-auto rounded-lg border border-zinc-800 bg-zinc-950 p-3 text-xs text-zinc-300">
                   {JSON.stringify(detail.snapshot, null, 2)}
                 </pre>
               </div>
@@ -440,8 +440,8 @@ export default function AlertsPage() {
       >
         {snoozeFor && (
           <div className="space-y-3">
-            <p className="text-sm text-slate-400">
-              Defer <span className="text-slate-200">{snoozeFor.title}</span>. It returns to the inbox
+            <p className="text-sm text-zinc-400">
+              Defer <span className="text-zinc-200">{snoozeFor.title}</span>. It returns to the inbox
               when the snooze expires.
             </p>
             <div className="grid grid-cols-2 gap-2">
@@ -465,9 +465,9 @@ export default function AlertsPage() {
 
 function Meta({ label, value }: { label: string; value: string }) {
   return (
-    <div className="rounded-lg border border-slate-800 bg-slate-900/60 px-3 py-2">
-      <div className="text-[10px] uppercase tracking-wide text-slate-500">{label}</div>
-      <div className="mt-0.5 font-mono text-slate-200">{value}</div>
+    <div className="rounded-lg border border-zinc-800 bg-zinc-900/60 px-3 py-2">
+      <div className="text-[10px] uppercase tracking-wide text-zinc-500">{label}</div>
+      <div className="mt-0.5 font-mono text-zinc-200">{value}</div>
     </div>
   )
 }

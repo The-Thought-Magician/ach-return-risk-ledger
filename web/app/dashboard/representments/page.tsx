@@ -243,7 +243,7 @@ export default function RepresentmentsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Re-presentment Tracking</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Monitor re-presentment attempts (max 2 per NACHA) and recovery performance across originators.
           </p>
         </div>
@@ -291,15 +291,15 @@ export default function RepresentmentsPage() {
               <TBody>
                 {recovery.map((r) => {
                   const rate = rateOf(r)
-                  const color = rate >= 60 ? 'bg-emerald-500' : rate >= 30 ? 'bg-amber-500' : 'bg-red-500'
+                  const color = rate >= 60 ? 'bg-amber-500' : rate >= 30 ? 'bg-amber-500' : 'bg-red-500'
                   return (
                     <TR key={r.originator_id}>
                       <TD className="font-medium text-white">{recoveryName(r)}</TD>
-                      <TD className="text-right tabular-nums text-slate-300">{attemptsOf(r)}</TD>
-                      <TD className="text-right tabular-nums text-emerald-300">{dollars(recoveredCentsOf(r))}</TD>
-                      <TD className="text-right font-semibold tabular-nums text-slate-200">{rate.toFixed(1)}%</TD>
+                      <TD className="text-right tabular-nums text-zinc-300">{attemptsOf(r)}</TD>
+                      <TD className="text-right tabular-nums text-amber-300">{dollars(recoveredCentsOf(r))}</TD>
+                      <TD className="text-right font-semibold tabular-nums text-zinc-200">{rate.toFixed(1)}%</TD>
                       <TD>
-                        <div className="h-2 w-full overflow-hidden rounded-full bg-slate-800">
+                        <div className="h-2 w-full overflow-hidden rounded-full bg-zinc-800">
                           <div className={`h-full rounded-full ${color}`} style={{ width: `${Math.min(100, rate)}%` }} />
                         </div>
                       </TD>
@@ -318,7 +318,7 @@ export default function RepresentmentsPage() {
           <select
             value={originatorFilter}
             onChange={(e) => setOriginatorFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
           >
             <option value="">All originators</option>
             {originatorOptions.map((o) => (
@@ -330,7 +330,7 @@ export default function RepresentmentsPage() {
           <select
             value={outcomeFilter}
             onChange={(e) => setOutcomeFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
           >
             <option value="">All outcomes</option>
             {OUTCOMES.map((o) => (
@@ -339,7 +339,7 @@ export default function RepresentmentsPage() {
               </option>
             ))}
           </select>
-          <span className="ml-auto text-xs text-slate-500">{reps.length} records</span>
+          <span className="ml-auto text-xs text-zinc-500">{reps.length} records</span>
         </CardHeader>
         <CardBody className="p-0">
           {reps.length === 0 ? (
@@ -378,12 +378,12 @@ export default function RepresentmentsPage() {
                     <TD className="text-center">
                       <Badge tone={num(r.attempt_number) >= 2 ? 'warning' : 'neutral'}>#{num(r.attempt_number)}</Badge>
                     </TD>
-                    <TD className="text-slate-400">{fmtDate(r.representment_date || r.created_at)}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">{dollars(r.amount_cents)}</TD>
+                    <TD className="text-zinc-400">{fmtDate(r.representment_date || r.created_at)}</TD>
+                    <TD className="text-right tabular-nums text-zinc-300">{dollars(r.amount_cents)}</TD>
                     <TD>
                       <Badge tone={outcomeTone(r.outcome)}>{(r.outcome || 'pending').replace(/_/g, ' ')}</Badge>
                     </TD>
-                    <TD className="text-right tabular-nums text-emerald-300">
+                    <TD className="text-right tabular-nums text-amber-300">
                       {num(r.recovered_amount_cents) > 0 ? dollars(r.recovered_amount_cents) : '—'}
                     </TD>
                     <TD className="text-right">
@@ -421,11 +421,11 @@ export default function RepresentmentsPage() {
             </div>
           )}
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Originator</label>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Originator</label>
             <select
               value={form.originator_id}
               onChange={(e) => setForm((f) => ({ ...f, originator_id: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
             >
               <option value="">Select originator</option>
               {originatorOptions.map((o) => (
@@ -437,40 +437,40 @@ export default function RepresentmentsPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Attempt #</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Attempt #</label>
               <select
                 value={form.attempt_number}
                 onChange={(e) => setForm((f) => ({ ...f, attempt_number: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
               >
                 <option value="1">1</option>
                 <option value="2">2</option>
               </select>
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Date</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Date</label>
               <input
                 type="date"
                 value={form.representment_date}
                 onChange={(e) => setForm((f) => ({ ...f, representment_date: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
               />
             </div>
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Return entry ID (optional)
             </label>
             <input
               value={form.return_entry_id}
               onChange={(e) => setForm((f) => ({ ...f, return_entry_id: e.target.value }))}
               placeholder="Link to a return entry"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
             />
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Amount (USD)</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Amount (USD)</label>
               <input
                 type="number"
                 step="0.01"
@@ -478,15 +478,15 @@ export default function RepresentmentsPage() {
                 value={form.amount}
                 onChange={(e) => setForm((f) => ({ ...f, amount: e.target.value }))}
                 placeholder="0.00"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Outcome</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Outcome</label>
               <select
                 value={form.outcome}
                 onChange={(e) => setForm((f) => ({ ...f, outcome: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
               >
                 {OUTCOMES.map((o) => (
                   <option key={o} value={o}>
@@ -498,7 +498,7 @@ export default function RepresentmentsPage() {
           </div>
           {form.outcome === 'recovered' && (
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Recovered (USD)
               </label>
               <input
@@ -508,7 +508,7 @@ export default function RepresentmentsPage() {
                 value={form.recovered}
                 onChange={(e) => setForm((f) => ({ ...f, recovered: e.target.value }))}
                 placeholder="Defaults to full amount"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
               />
             </div>
           )}
@@ -537,16 +537,16 @@ export default function RepresentmentsPage() {
                 {error}
               </div>
             )}
-            <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2 text-xs text-slate-400">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2 text-xs text-zinc-400">
               {editing.originator_name || editing.originator_id} · attempt #{num(editing.attempt_number)} ·{' '}
               {dollars(editing.amount_cents)}
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">Outcome</label>
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">Outcome</label>
               <select
                 value={editForm.outcome}
                 onChange={(e) => setEditForm((f) => ({ ...f, outcome: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
               >
                 {OUTCOMES.map((o) => (
                   <option key={o} value={o}>
@@ -557,7 +557,7 @@ export default function RepresentmentsPage() {
             </div>
             {editForm.outcome === 'recovered' && (
               <div>
-                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+                <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Recovered (USD)
                 </label>
                 <input
@@ -567,7 +567,7 @@ export default function RepresentmentsPage() {
                   value={editForm.recovered}
                   onChange={(e) => setEditForm((f) => ({ ...f, recovered: e.target.value }))}
                   placeholder={(num(editing.amount_cents) / 100).toFixed(2)}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
                 />
               </div>
             )}

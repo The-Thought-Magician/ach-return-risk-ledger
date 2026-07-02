@@ -1,5 +1,5 @@
 'use client'
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
 import { authClient } from '@/lib/auth/client'
@@ -70,10 +70,80 @@ function isActive(pathname: string, href: string) {
   return pathname === href || pathname.startsWith(href + '/')
 }
 
+function sectionActive(pathname: string, section: NavSection) {
+  return section.items.some((item) => isActive(pathname, item.href))
+}
+
+function NavDropdown({ section, pathname }: { section: NavSection; pathname: string }) {
+  const [open, setOpen] = useState(false)
+  const ref = useRef<HTMLDivElement>(null)
+  const active = sectionActive(pathname, section)
+
+  useEffect(() => {
+    function onClick(e: MouseEvent) {
+      if (ref.current && !ref.current.contains(e.target as Node)) setOpen(false)
+    }
+    document.addEventListener('mousedown', onClick)
+    return () => document.removeEventListener('mousedown', onClick)
+  }, [])
+
+  if (section.items.length === 1) {
+    const item = section.items[0]
+    const itemActive = isActive(pathname, item.href)
+    return (
+      <Link
+        href={item.href}
+        className={`whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+          itemActive ? 'bg-amber-500/10 text-amber-300' : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-100'
+        }`}
+      >
+        {section.title}
+      </Link>
+    )
+  }
+
+  return (
+    <div className="relative" ref={ref}>
+      <button
+        onClick={() => setOpen((o) => !o)}
+        className={`flex items-center gap-1 whitespace-nowrap rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+          active ? 'bg-amber-500/10 text-amber-300' : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-100'
+        }`}
+      >
+        {section.title}
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="m6 9 6 6 6-6" />
+        </svg>
+      </button>
+      {open && (
+        <div className="absolute left-0 top-full z-40 mt-1 w-56 rounded-lg border border-zinc-800 bg-zinc-900 p-1.5 shadow-xl">
+          {section.items.map((item) => {
+            const itemActive = isActive(pathname, item.href)
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                onClick={() => setOpen(false)}
+                className={`block rounded-md px-3 py-2 text-sm transition-colors ${
+                  itemActive
+                    ? 'bg-amber-500/10 font-medium text-amber-300'
+                    : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-100'
+                }`}
+              >
+                {item.label}
+              </Link>
+            )
+          })}
+        </div>
+      )}
+    </div>
+  )
+}
+
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
   const router = useRouter()
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
+  const [mobileOpen, setMobileOpen] = useState(false)
   const [checking, setChecking] = useState(true)
   const [workspace, setWorkspace] = useState<string>('Workspace')
 
@@ -94,9 +164,9 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
     }
   }, [router])
 
-  // Close mobile drawer on navigation.
+  // Close mobile nav on navigation.
   useEffect(() => {
-    setOpen(false)
+    setMobileOpen(false)
   }, [pathname])
 
   const signOut = async () => {
@@ -106,99 +176,96 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
 
   if (checking) {
     return (
-      <div className="flex min-h-screen items-center justify-center bg-slate-950">
-        <div className="flex items-center gap-3 text-slate-400">
-          <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-slate-700 border-t-emerald-400" />
+      <div className="flex min-h-screen items-center justify-center bg-zinc-950">
+        <div className="flex items-center gap-3 text-zinc-400">
+          <span className="inline-block h-5 w-5 animate-spin rounded-full border-2 border-zinc-700 border-t-amber-400" />
           <span className="text-sm">Loading workspace...</span>
         </div>
       </div>
     )
   }
 
-  const sidebar = (
-    <nav className="flex h-full flex-col">
-      <div className="flex items-center gap-2 px-5 py-5">
-        <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-emerald-500/15 text-emerald-300">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-            <path d="M3 3v18h18" />
-            <path d="m7 14 4-4 3 3 5-6" />
-          </svg>
-        </span>
-        <span className="text-sm font-bold tracking-tight text-white">AchReturnRiskLedger</span>
-      </div>
-      <div className="flex-1 space-y-5 overflow-y-auto px-3 pb-6">
-        {NAV.map((section) => (
-          <div key={section.title}>
-            <div className="px-2 pb-1.5 text-[10px] font-semibold uppercase tracking-wider text-slate-600">
-              {section.title}
-            </div>
-            <div className="space-y-0.5">
-              {section.items.map((item) => {
-                const active = isActive(pathname, item.href)
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={`block rounded-lg px-3 py-2 text-sm transition-colors ${
-                      active
-                        ? 'bg-emerald-500/10 font-medium text-emerald-300'
-                        : 'text-slate-400 hover:bg-slate-800/60 hover:text-slate-100'
-                    }`}
-                  >
-                    {item.label}
-                  </Link>
-                )
-              })}
-            </div>
-          </div>
-        ))}
-      </div>
-    </nav>
-  )
-
   return (
-    <div className="flex min-h-screen bg-slate-950">
-      {/* Desktop sidebar */}
-      <aside className="hidden w-64 shrink-0 border-r border-slate-800 bg-slate-900/40 lg:block">
-        <div className="sticky top-0 h-screen">{sidebar}</div>
-      </aside>
+    <div className="flex min-h-screen w-full flex-col bg-zinc-950">
+      <header className="sticky top-0 z-30 w-full border-b border-zinc-800 bg-zinc-950/80 backdrop-blur">
+        <div className="flex items-center justify-between gap-4 px-4 py-3 lg:px-8">
+          <div className="flex items-center gap-2">
+            <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-amber-500/15 text-amber-300">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M3 3v18h18" />
+                <path d="m7 14 4-4 3 3 5-6" />
+              </svg>
+            </span>
+            <span className="font-black tracking-tight text-white">AchReturnRiskLedger</span>
+          </div>
 
-      {/* Mobile drawer */}
-      {open && (
-        <div className="fixed inset-0 z-40 lg:hidden">
-          <div className="absolute inset-0 bg-slate-950/70" onClick={() => setOpen(false)} aria-hidden />
-          <aside className="absolute left-0 top-0 h-full w-64 border-r border-slate-800 bg-slate-900">
-            {sidebar}
-          </aside>
-        </div>
-      )}
+          <nav className="hidden flex-1 items-center gap-1 overflow-x-auto px-4 lg:flex">
+            {NAV.map((section) => (
+              <NavDropdown key={section.title} section={section} pathname={pathname} />
+            ))}
+          </nav>
 
-      <div className="flex min-w-0 flex-1 flex-col">
-        <header className="sticky top-0 z-30 flex items-center justify-between border-b border-slate-800 bg-slate-950/80 px-4 py-3 backdrop-blur lg:px-6">
           <div className="flex items-center gap-3">
+            <span className="hidden max-w-[160px] truncate text-sm text-zinc-400 sm:block">{workspace}</span>
             <button
-              className="rounded-md p-2 text-slate-400 hover:bg-slate-800 hover:text-white lg:hidden"
-              onClick={() => setOpen(true)}
-              aria-label="Open navigation"
+              onClick={signOut}
+              className="hidden rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-700 lg:block"
+            >
+              Sign out
+            </button>
+            <button
+              className="rounded-md p-2 text-zinc-400 hover:bg-zinc-800 hover:text-white lg:hidden"
+              onClick={() => setMobileOpen((o) => !o)}
+              aria-label="Toggle navigation"
             >
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                 <path d="M4 6h16M4 12h16M4 18h16" />
               </svg>
             </button>
-            <span className="text-sm font-medium text-slate-300">Compliance Workspace</span>
           </div>
-          <div className="flex items-center gap-3">
-            <span className="hidden max-w-[180px] truncate text-sm text-slate-400 sm:block">{workspace}</span>
-            <button
-              onClick={signOut}
-              className="rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm font-medium text-slate-200 transition-colors hover:bg-slate-700"
-            >
-              Sign out
-            </button>
+        </div>
+
+        {/* Mobile nav */}
+        {mobileOpen && (
+          <div className="border-t border-zinc-800 px-4 py-3 lg:hidden">
+            <div className="space-y-4">
+              {NAV.map((section) => (
+                <div key={section.title}>
+                  <div className="px-1 pb-1 text-[10px] font-semibold uppercase tracking-wider text-zinc-600">
+                    {section.title}
+                  </div>
+                  <div className="space-y-0.5">
+                    {section.items.map((item) => {
+                      const active = isActive(pathname, item.href)
+                      return (
+                        <Link
+                          key={item.href}
+                          href={item.href}
+                          className={`block rounded-lg px-3 py-2 text-sm transition-colors ${
+                            active
+                              ? 'bg-amber-500/10 font-medium text-amber-300'
+                              : 'text-zinc-400 hover:bg-zinc-800/60 hover:text-zinc-100'
+                          }`}
+                        >
+                          {item.label}
+                        </Link>
+                      )
+                    })}
+                  </div>
+                </div>
+              ))}
+              <button
+                onClick={signOut}
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-2 text-sm font-medium text-zinc-200 transition-colors hover:bg-zinc-700"
+              >
+                Sign out
+              </button>
+            </div>
           </div>
-        </header>
-        <main className="min-w-0 flex-1 px-4 py-6 lg:px-8">{children}</main>
-      </div>
+        )}
+      </header>
+
+      <main className="w-full flex-1 px-4 py-6 lg:px-8">{children}</main>
     </div>
   )
 }

@@ -262,7 +262,7 @@ export default function ImportsPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Imports</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Bulk-load originators, entries, returns and fees from CSV, parse NACHA return files, or seed sample data.
           </p>
         </div>
@@ -281,7 +281,7 @@ export default function ImportsPage() {
         <div
           className={`rounded-lg border px-4 py-3 text-sm ${
             banner.tone === 'ok'
-              ? 'border-emerald-500/30 bg-emerald-500/10 text-emerald-300'
+              ? 'border-amber-500/30 bg-amber-500/10 text-amber-300'
               : 'border-red-500/30 bg-red-500/10 text-red-300'
           }`}
         >
@@ -337,13 +337,13 @@ export default function ImportsPage() {
               <TBody>
                 {imports.map((rec) => (
                   <TR key={rec.id}>
-                    <TD className="text-slate-400">{fmtDateTime(rec.created_at)}</TD>
+                    <TD className="text-zinc-400">{fmtDateTime(rec.created_at)}</TD>
                     <TD>
                       <Badge tone="info">{rec.kind}</Badge>
                     </TD>
-                    <TD className="text-slate-300">{rec.filename ?? '—'}</TD>
-                    <TD className="text-right tabular-nums text-slate-300">{rec.row_count ?? 0}</TD>
-                    <TD className="text-right tabular-nums text-emerald-300">{rec.inserted_count ?? 0}</TD>
+                    <TD className="text-zinc-300">{rec.filename ?? '—'}</TD>
+                    <TD className="text-right tabular-nums text-zinc-300">{rec.row_count ?? 0}</TD>
+                    <TD className="text-right tabular-nums text-amber-300">{rec.inserted_count ?? 0}</TD>
                     <TD className="text-right tabular-nums">
                       {rec.error_count > 0 ? (
                         <button
@@ -353,7 +353,7 @@ export default function ImportsPage() {
                           {rec.error_count}
                         </button>
                       ) : (
-                        <span className="text-slate-500">0</span>
+                        <span className="text-zinc-500">0</span>
                       )}
                     </TD>
                     <TD>
@@ -395,7 +395,7 @@ export default function ImportsPage() {
               <select
                 value={csvKind}
                 onChange={(e) => setCsvKind(e.target.value as CsvKind)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               >
                 {CSV_KINDS.map((k) => (
                   <option key={k.value} value={k.value}>
@@ -408,18 +408,18 @@ export default function ImportsPage() {
               <input
                 value={csvFilename}
                 onChange={(e) => setCsvFilename(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               />
             </Field>
           </div>
 
-          <div className="rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2 text-xs text-slate-400">
+          <div className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2 text-xs text-zinc-400">
             Expected columns:{' '}
-            <span className="font-mono text-slate-300">{selectedKind.columns.join(', ')}</span>
+            <span className="font-mono text-zinc-300">{selectedKind.columns.join(', ')}</span>
           </div>
 
           <div className="flex flex-wrap items-center gap-2">
-            <label className="inline-flex cursor-pointer items-center rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-700">
+            <label className="inline-flex cursor-pointer items-center rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm text-zinc-200 hover:bg-zinc-700">
               Choose file
               <input
                 type="file"
@@ -442,18 +442,18 @@ export default function ImportsPage() {
               onChange={(e) => setCsvText(e.target.value)}
               rows={8}
               placeholder={`${selectedKind.columns.join(',')}\n…`}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 font-mono text-xs text-slate-200 placeholder:text-slate-600"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-xs text-zinc-200 placeholder:text-zinc-600"
             />
           </Field>
 
           {csvPreview && csvPreview.rows.length > 0 && (
             <div>
-              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">
+              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Preview — {csvPreview.rows.length} rows
               </div>
-              <div className="max-h-48 overflow-auto rounded-lg border border-slate-800">
+              <div className="max-h-48 overflow-auto rounded-lg border border-zinc-800">
                 <table className="w-full text-xs">
-                  <thead className="bg-slate-900 text-left text-slate-500">
+                  <thead className="bg-zinc-900 text-left text-zinc-500">
                     <tr>
                       {csvPreview.headers.map((h) => (
                         <th key={h} className="px-2 py-1.5 font-medium">
@@ -462,11 +462,11 @@ export default function ImportsPage() {
                       ))}
                     </tr>
                   </thead>
-                  <tbody className="divide-y divide-slate-800">
+                  <tbody className="divide-y divide-zinc-800">
                     {csvPreview.rows.slice(0, 8).map((r, i) => (
                       <tr key={i}>
                         {csvPreview.headers.map((h) => (
-                          <td key={h} className="px-2 py-1.5 text-slate-300">
+                          <td key={h} className="px-2 py-1.5 text-zinc-300">
                             {r[h]}
                           </td>
                         ))}
@@ -503,12 +503,12 @@ export default function ImportsPage() {
               {nachaError}
             </div>
           )}
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-zinc-400">
             Paste the raw text of a NACHA return file (94-char records). Addenda return records (entry type 7 with
             return reason codes) are parsed into return entries.
           </p>
           <div className="flex flex-wrap items-center gap-2">
-            <label className="inline-flex cursor-pointer items-center rounded-lg border border-slate-700 bg-slate-800 px-3 py-1.5 text-sm text-slate-200 hover:bg-slate-700">
+            <label className="inline-flex cursor-pointer items-center rounded-lg border border-zinc-700 bg-zinc-800 px-3 py-1.5 text-sm text-zinc-200 hover:bg-zinc-700">
               Choose file
               <input
                 type="file"
@@ -524,7 +524,7 @@ export default function ImportsPage() {
               <input
                 value={nachaFilename}
                 onChange={(e) => setNachaFilename(e.target.value)}
-                className="w-56 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-56 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               />
             </Field>
           </div>
@@ -534,7 +534,7 @@ export default function ImportsPage() {
               onChange={(e) => setNachaText(e.target.value)}
               rows={10}
               placeholder="101 0210000890 …"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 font-mono text-xs text-slate-200 placeholder:text-slate-600"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 font-mono text-xs text-zinc-200 placeholder:text-zinc-600"
             />
           </Field>
         </div>
@@ -549,7 +549,7 @@ export default function ImportsPage() {
       >
         {errDetail && (
           <div className="space-y-3 text-sm">
-            <div className="text-slate-400">
+            <div className="text-zinc-400">
               {errDetail.filename ?? errDetail.kind} — {errDetail.error_count} of {errDetail.row_count} rows failed.
             </div>
             <ul className="space-y-1.5">
@@ -562,7 +562,7 @@ export default function ImportsPage() {
                 </li>
               ))}
               {errorList(errDetail).length === 0 && (
-                <li className="text-xs text-slate-500">No detailed error messages were recorded.</li>
+                <li className="text-xs text-zinc-500">No detailed error messages were recorded.</li>
               )}
             </ul>
           </div>
@@ -575,7 +575,7 @@ export default function ImportsPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
       {children}
     </label>
   )

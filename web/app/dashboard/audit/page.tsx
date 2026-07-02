@@ -184,7 +184,7 @@ export default function AuditPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Audit Log</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Immutable record of every write to the ledger. Filter by entity, action or actor for compliance review.
           </p>
         </div>
@@ -206,7 +206,7 @@ export default function AuditPage() {
             <select
               value={entityTypeFilter}
               onChange={(e) => setEntityTypeFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200"
             >
               <option value="">All entity types</option>
               {entityTypes.map((t) => (
@@ -218,7 +218,7 @@ export default function AuditPage() {
             <select
               value={actionFilter}
               onChange={(e) => setActionFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200"
             >
               <option value="">All actions</option>
               {actions.map((a) => (
@@ -230,7 +230,7 @@ export default function AuditPage() {
             <select
               value={actorFilter}
               onChange={(e) => setActorFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200"
             >
               <option value="">All actors</option>
               {actors.map((a) => (
@@ -243,10 +243,10 @@ export default function AuditPage() {
               value={entityIdFilter}
               onChange={(e) => setEntityIdFilter(e.target.value)}
               placeholder="Filter by entity ID…"
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600"
             />
             {hasActiveFilters && (
-              <button onClick={clearFilters} className="text-xs text-slate-400 hover:text-white">
+              <button onClick={clearFilters} className="text-xs text-zinc-400 hover:text-white">
                 Clear filters
               </button>
             )}
@@ -255,7 +255,7 @@ export default function AuditPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search action, entity, actor, detail…"
-            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600"
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600"
           />
         </CardHeader>
         <CardBody>
@@ -290,11 +290,11 @@ export default function AuditPage() {
             <div className="space-y-8">
               {groups.map((g) => (
                 <div key={g.day}>
-                  <div className="sticky top-0 z-10 -mx-5 mb-3 bg-slate-900/80 px-5 py-1.5 backdrop-blur">
-                    <span className="text-xs font-semibold uppercase tracking-wide text-slate-400">{g.day}</span>
-                    <span className="ml-2 text-xs text-slate-600">{g.items.length} events</span>
+                  <div className="sticky top-0 z-10 -mx-5 mb-3 bg-zinc-900/80 px-5 py-1.5 backdrop-blur">
+                    <span className="text-xs font-semibold uppercase tracking-wide text-zinc-400">{g.day}</span>
+                    <span className="ml-2 text-xs text-zinc-600">{g.items.length} events</span>
                   </div>
-                  <ol className="relative ml-3 space-y-4 border-l border-slate-800 pl-6">
+                  <ol className="relative ml-3 space-y-4 border-l border-zinc-800 pl-6">
                     {g.items.map((l) => {
                       const tone = actionTone(l.action)
                       const ds = detailString(l.detail)
@@ -306,7 +306,7 @@ export default function AuditPage() {
                           />
                           <button
                             onClick={() => setDetail(l)}
-                            className="block w-full rounded-lg border border-slate-800 bg-slate-950/40 px-4 py-3 text-left transition-colors hover:border-slate-700 hover:bg-slate-900/60"
+                            className="block w-full rounded-lg border border-zinc-800 bg-zinc-950/40 px-4 py-3 text-left transition-colors hover:border-zinc-700 hover:bg-zinc-900/60"
                           >
                             <div className="flex flex-wrap items-center gap-2">
                               <Badge tone={tone}>{l.action}</Badge>
@@ -314,19 +314,19 @@ export default function AuditPage() {
                                 <span className="text-sm font-medium text-white">{l.entity_type}</span>
                               )}
                               {l.entity_id && (
-                                <span className="font-mono text-xs text-slate-500">{l.entity_id}</span>
+                                <span className="font-mono text-xs text-zinc-500">{l.entity_id}</span>
                               )}
-                              <span className="ml-auto text-xs tabular-nums text-slate-500">
+                              <span className="ml-auto text-xs tabular-nums text-zinc-500">
                                 {fmtTime(l.created_at)}
                               </span>
                             </div>
-                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-slate-500">
+                            <div className="mt-1 flex flex-wrap items-center gap-x-3 gap-y-1 text-xs text-zinc-500">
                               {l.actor && (
                                 <span>
-                                  by <span className="text-slate-300">{l.actor}</span>
+                                  by <span className="text-zinc-300">{l.actor}</span>
                                 </span>
                               )}
-                              {ds && <span className="truncate font-mono text-slate-600">{ds}</span>}
+                              {ds && <span className="truncate font-mono text-zinc-600">{ds}</span>}
                             </div>
                           </button>
                         </li>
@@ -352,7 +352,7 @@ export default function AuditPage() {
               <Badge tone={actionTone(detail.action)}>{detail.action}</Badge>
               {detail.entity_type && <Badge tone={statusTone(detail.entity_type)}>{detail.entity_type}</Badge>}
             </div>
-            <div className="grid grid-cols-2 gap-3 text-slate-300">
+            <div className="grid grid-cols-2 gap-3 text-zinc-300">
               <Detail label="Actor" value={detail.actor ?? 'system'} />
               <Detail label="When" value={fmtDateTime(detail.created_at)} />
               <Detail label="Entity type" value={detail.entity_type ?? '—'} />
@@ -362,11 +362,11 @@ export default function AuditPage() {
               />
             </div>
             <div>
-              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-slate-500">Detail</div>
+              <div className="mb-1 text-xs font-medium uppercase tracking-wide text-zinc-500">Detail</div>
               {detail.detail == null ? (
-                <p className="text-slate-500">No additional detail recorded.</p>
+                <p className="text-zinc-500">No additional detail recorded.</p>
               ) : (
-                <pre className="max-h-72 overflow-auto whitespace-pre-wrap rounded-lg border border-slate-800 bg-slate-950/60 p-3 font-mono text-xs text-slate-200">
+                <pre className="max-h-72 overflow-auto whitespace-pre-wrap rounded-lg border border-zinc-800 bg-zinc-950/60 p-3 font-mono text-xs text-zinc-200">
                   {typeof detail.detail === 'string'
                     ? detail.detail
                     : JSON.stringify(detail.detail, null, 2)}
@@ -383,7 +383,7 @@ export default function AuditPage() {
 function dotClass(tone: string) {
   switch (tone) {
     case 'clear':
-      return 'border-emerald-400 bg-emerald-500'
+      return 'border-amber-400 bg-amber-500'
     case 'info':
       return 'border-sky-400 bg-sky-500'
     case 'watch':
@@ -393,15 +393,15 @@ function dotClass(tone: string) {
     case 'breach':
       return 'border-red-400 bg-red-500'
     default:
-      return 'border-slate-600 bg-slate-700'
+      return 'border-zinc-600 bg-zinc-700'
   }
 }
 
 function Detail({ label, value }: { label: string; value: React.ReactNode }) {
   return (
     <div>
-      <div className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</div>
-      <div className="mt-0.5 break-words text-slate-200">{value}</div>
+      <div className="text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</div>
+      <div className="mt-0.5 break-words text-zinc-200">{value}</div>
     </div>
   )
 }

@@ -169,7 +169,7 @@ export default function ReturnCodesPage() {
     <div className="space-y-6">
       <div>
         <h1 className="text-xl font-semibold text-white">NACHA Return Codes</h1>
-        <p className="mt-1 text-sm text-slate-400">
+        <p className="mt-1 text-sm text-zinc-400">
           The R01–R85 return-code dictionary. Reclassify a code to override how it counts toward your
           unauthorized and administrative rates. Overrides are workspace-scoped and audited.
         </p>
@@ -184,25 +184,25 @@ export default function ReturnCodesPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Filters</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Filters</h2>
         </CardHeader>
         <CardBody className="grid grid-cols-1 gap-3 md:grid-cols-3 lg:grid-cols-4">
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Search
             <input
               type="text"
               placeholder="code or description"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600"
             />
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Category
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
             >
               <option value="">All</option>
               {CATEGORIES.map((c) => (
@@ -212,12 +212,12 @@ export default function ReturnCodesPage() {
               ))}
             </select>
           </label>
-          <label className="flex items-center gap-2 self-end text-sm text-slate-300">
+          <label className="flex items-center gap-2 self-end text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={onlyOverridden}
               onChange={(e) => setOnlyOverridden(e.target.checked)}
-              className="accent-emerald-500"
+              className="accent-amber-500"
             />
             Overridden only
           </label>
@@ -232,8 +232,8 @@ export default function ReturnCodesPage() {
 
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <h2 className="text-sm font-semibold text-slate-200">Code Dictionary</h2>
-          <span className="text-xs text-slate-500">{visible.length} codes</span>
+          <h2 className="text-sm font-semibold text-zinc-200">Code Dictionary</h2>
+          <span className="text-xs text-zinc-500">{visible.length} codes</span>
         </CardHeader>
         <CardBody className="p-0">
           {loading ? (
@@ -260,7 +260,7 @@ export default function ReturnCodesPage() {
                 {visible.map((c) => (
                   <TR key={c.id}>
                     <TD className="font-mono font-medium text-white">{c.code}</TD>
-                    <TD className="text-slate-300">{c.description}</TD>
+                    <TD className="text-zinc-300">{c.description}</TD>
                     <TD>
                       <div className="flex items-center gap-2">
                         <Badge tone={categoryTone(c.effective_category)}>{c.effective_category}</Badge>
@@ -272,7 +272,7 @@ export default function ReturnCodesPage() {
                       </div>
                     </TD>
                     <TD>
-                      {c.consumer ? <Badge tone="info">consumer</Badge> : <span className="text-xs text-slate-600">corporate</span>}
+                      {c.consumer ? <Badge tone="info">consumer</Badge> : <span className="text-xs text-zinc-600">corporate</span>}
                     </TD>
                     <TD className="text-right">
                       <div className="flex justify-end gap-2">
@@ -316,8 +316,8 @@ export default function ReturnCodesPage() {
           </div>
         ) : detail ? (
           <div className="space-y-4">
-            <div className="rounded-lg border border-slate-800 bg-slate-950 px-4 py-3">
-              <p className="text-sm text-slate-300">{detail.code.description}</p>
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3">
+              <p className="text-sm text-zinc-300">{detail.code.description}</p>
               <div className="mt-2 flex flex-wrap items-center gap-2">
                 <Badge tone={categoryTone(detail.code.effective_category)}>
                   {detail.code.effective_category}
@@ -353,7 +353,7 @@ export default function ReturnCodesPage() {
                 description="No returns in this workspace currently use this code."
               />
             ) : (
-              <div className="max-h-72 overflow-y-auto rounded-lg border border-slate-800">
+              <div className="max-h-72 overflow-y-auto rounded-lg border border-zinc-800">
                 <Table>
                   <THead>
                     <TR>
@@ -375,7 +375,7 @@ export default function ReturnCodesPage() {
                             <Badge tone="warning">unmatched</Badge>
                           )}
                         </TD>
-                        <TD className="text-xs text-slate-400">{e.external_ref || '—'}</TD>
+                        <TD className="text-xs text-zinc-400">{e.external_ref || '—'}</TD>
                       </TR>
                     ))}
                   </TBody>
@@ -409,17 +409,17 @@ export default function ReturnCodesPage() {
                 {reclassError}
               </div>
             )}
-            <p className="text-sm text-slate-400">{reclassCode.description}</p>
-            <div className="text-sm text-slate-400">
+            <p className="text-sm text-zinc-400">{reclassCode.description}</p>
+            <div className="text-sm text-zinc-400">
               Default category:{' '}
               <Badge tone={categoryTone(reclassCode.category)}>{reclassCode.category}</Badge>
             </div>
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Workspace category</span>
+              <span className="mb-1 block text-zinc-300">Workspace category</span>
               <select
                 value={reclassCategory}
                 onChange={(e) => setReclassCategory(e.target.value)}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c} value={c}>
@@ -428,7 +428,7 @@ export default function ReturnCodesPage() {
                 ))}
               </select>
             </label>
-            <p className="text-xs text-slate-500">
+            <p className="text-xs text-zinc-500">
               This override applies only to your workspace and is recorded in the audit log. It changes
               how returns with this code count toward your NACHA rate thresholds.
             </p>

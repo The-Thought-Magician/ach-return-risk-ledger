@@ -80,7 +80,7 @@ function rateTone(rate: number): string {
   if (rate >= 0.5) return 'text-red-300'
   if (rate >= 0.3) return 'text-orange-300'
   if (rate >= 0.15) return 'text-amber-300'
-  return 'text-emerald-300'
+  return 'text-amber-300'
 }
 
 function pointDate(p: TrendPoint): string {
@@ -149,7 +149,7 @@ function TrendChart({ points }: { points: TrendPoint[] }) {
     <div>
       <div className="mb-3 flex flex-wrap gap-3">
         {effectiveLines.map((l) => (
-          <span key={String(l.key)} className="inline-flex items-center gap-1.5 text-xs text-slate-400">
+          <span key={String(l.key)} className="inline-flex items-center gap-1.5 text-xs text-zinc-400">
             <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: l.color }} />
             {l.label}
           </span>
@@ -227,15 +227,15 @@ function CodeDistribution({ buckets }: { buckets: CodeBucket[] }) {
           <div className="w-28 shrink-0">
             <Badge tone={catTone(t.category)}>{t.code}</Badge>
           </div>
-          <div className="h-5 flex-1 overflow-hidden rounded bg-slate-800">
+          <div className="h-5 flex-1 overflow-hidden rounded bg-zinc-800">
             <div
-              className="flex h-full items-center justify-end rounded bg-sky-500/70 px-2 text-[10px] font-medium text-slate-950"
+              className="flex h-full items-center justify-end rounded bg-sky-500/70 px-2 text-[10px] font-medium text-zinc-950"
               style={{ width: `${Math.max(6, (t.count / max) * 100)}%` }}
             >
               {t.count}
             </div>
           </div>
-          <div className="w-12 shrink-0 text-right text-xs tabular-nums text-slate-500">
+          <div className="w-12 shrink-0 text-right text-xs tabular-nums text-zinc-500">
             {grand ? `${((t.count / grand) * 100).toFixed(0)}%` : '0%'}
           </div>
         </div>
@@ -406,7 +406,7 @@ export default function AnalyticsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Return Analytics</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Rate trends, return-code distribution, onboarding cohorts, and the volume-to-return-rate
             relationship across the portfolio.
           </p>
@@ -445,7 +445,7 @@ export default function AnalyticsPage() {
           <select
             value={originatorId}
             onChange={(e) => onOriginatorChange(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
           >
             <option value="">Portfolio-wide</option>
             {originators.map((o) => (
@@ -454,8 +454,8 @@ export default function AnalyticsPage() {
               </option>
             ))}
           </select>
-          {trendsLoading && <span className="text-xs text-slate-500">Updating...</span>}
-          <span className="ml-auto text-xs text-slate-500">{trends.length} points</span>
+          {trendsLoading && <span className="text-xs text-zinc-500">Updating...</span>}
+          <span className="ml-auto text-xs text-zinc-500">{trends.length} points</span>
         </CardHeader>
         <CardBody>
           <TrendChart points={trends} />
@@ -467,7 +467,7 @@ export default function AnalyticsPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <span className="text-sm font-semibold text-white">Return-code distribution</span>
-            <span className="text-xs text-slate-500">{totalReturns.toLocaleString()} returns</span>
+            <span className="text-xs text-zinc-500">{totalReturns.toLocaleString()} returns</span>
           </CardHeader>
           <CardBody>
             <CodeDistribution buckets={codeBuckets} />
@@ -478,7 +478,7 @@ export default function AnalyticsPage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <span className="text-sm font-semibold text-white">Onboarding cohorts</span>
-            <span className="text-xs text-slate-500">{cohorts.length} cohorts</span>
+            <span className="text-xs text-zinc-500">{cohorts.length} cohorts</span>
           </CardHeader>
           <CardBody className="p-0">
             {cohorts.length === 0 ? (
@@ -499,7 +499,7 @@ export default function AnalyticsPage() {
                   {cohorts.map((c, i) => (
                     <TR key={i}>
                       <TD className="font-medium text-white">{cohortLabel(c)}</TD>
-                      <TD className="text-right tabular-nums text-slate-300">{cohortCount(c)}</TD>
+                      <TD className="text-right tabular-nums text-zinc-300">{cohortCount(c)}</TD>
                       <TD className={`text-right font-semibold tabular-nums ${rateTone(cohortRate(c))}`}>
                         {fmtPct(cohortRate(c))}
                       </TD>
@@ -516,7 +516,7 @@ export default function AnalyticsPage() {
       <Card>
         <CardHeader className="flex items-center justify-between">
           <span className="text-sm font-semibold text-white">Volume vs return rate</span>
-          <span className="text-xs text-slate-500">
+          <span className="text-xs text-zinc-500">
             {volume.length} originators · dashed line = 0.50% NACHA unauthorized ceiling
           </span>
         </CardHeader>

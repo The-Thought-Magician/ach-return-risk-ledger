@@ -133,18 +133,18 @@ function RateBar({ label, rate, status, limit }: { label: string; rate?: number;
   const fill = Math.min(100, (value / limit) * 100)
   const tone = statusTone(status)
   const color =
-    tone === 'breach' ? 'bg-red-500' : tone === 'warning' ? 'bg-orange-500' : tone === 'watch' ? 'bg-amber-500' : 'bg-emerald-500'
+    tone === 'breach' ? 'bg-red-500' : tone === 'warning' ? 'bg-orange-500' : tone === 'watch' ? 'bg-amber-500' : 'bg-amber-500'
   return (
-    <div className="rounded-xl border border-slate-800 bg-slate-900/60 p-4">
+    <div className="rounded-xl border border-zinc-800 bg-zinc-900/60 p-4">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+        <span className="text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
         <Badge tone={tone}>{status ?? 'n/a'}</Badge>
       </div>
       <div className="mt-2 text-xl font-semibold tabular-nums text-white">{pct(rate)}</div>
-      <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-slate-800">
+      <div className="mt-3 h-2 w-full overflow-hidden rounded-full bg-zinc-800">
         <div className={`h-full rounded-full ${color}`} style={{ width: `${fill}%` }} />
       </div>
-      <div className="mt-1 text-[11px] text-slate-500">limit {pct(limit)}</div>
+      <div className="mt-1 text-[11px] text-zinc-500">limit {pct(limit)}</div>
     </div>
   )
 }
@@ -152,7 +152,7 @@ function RateBar({ label, rate, status, limit }: { label: string; rate?: number;
 // Multi-line trend chart for rate snapshot timeline.
 function RateTimeline({ snapshots }: { snapshots: RateSnapshot[] }) {
   if (snapshots.length < 2) {
-    return <p className="text-sm text-slate-500">Not enough snapshots to chart a trend yet.</p>
+    return <p className="text-sm text-zinc-500">Not enough snapshots to chart a trend yet.</p>
   }
   const ordered = [...snapshots].sort(
     (a, b) => new Date(a.as_of ?? 0).getTime() - new Date(b.as_of ?? 0).getTime(),
@@ -187,7 +187,7 @@ function RateTimeline({ snapshots }: { snapshots: RateSnapshot[] }) {
       </div>
       <div className="mt-2 flex flex-wrap gap-4">
         {series.map((ser) => (
-          <span key={String(ser.key)} className="flex items-center gap-1.5 text-xs text-slate-400">
+          <span key={String(ser.key)} className="flex items-center gap-1.5 text-xs text-zinc-400">
             <span className="inline-block h-2 w-2 rounded-full" style={{ backgroundColor: ser.color }} />
             {ser.label}
           </span>
@@ -270,7 +270,7 @@ export default function OriginatorProfilePage() {
   return (
     <div className="space-y-6">
       <div>
-        <Link href="/dashboard/originators" className="text-xs text-slate-500 hover:text-slate-300">
+        <Link href="/dashboard/originators" className="text-xs text-zinc-500 hover:text-zinc-300">
           ← Originator Registry
         </Link>
         <div className="mt-2 flex flex-wrap items-center justify-between gap-3">
@@ -282,7 +282,7 @@ export default function OriginatorProfilePage() {
             {sc?.grade && <Badge tone={gradeTone(sc.grade)}>Grade {sc.grade}</Badge>}
           </div>
         </div>
-        <p className="mt-1 text-sm text-slate-500">
+        <p className="mt-1 text-sm text-zinc-500">
           {o?.odfi_name ? `ODFI ${o.odfi_name}` : 'No ODFI'} · Company {o?.company_id || '—'} · Routing{' '}
           {o?.routing_number || '—'} · MCC {o?.mcc || '—'}
         </p>
@@ -292,7 +292,7 @@ export default function OriginatorProfilePage() {
       <Card>
         <CardHeader>
           <h2 className="text-sm font-semibold text-white">Current Return Rates</h2>
-          <p className="mt-0.5 text-xs text-slate-500">
+          <p className="mt-0.5 text-xs text-zinc-500">
             As of {fmtDate(rates?.as_of)} · {rates?.debit_count ?? 0} debit entries · {rates?.total_returns ?? 0} returns
           </p>
         </CardHeader>
@@ -320,7 +320,7 @@ export default function OriginatorProfilePage() {
               <div className="space-y-4">
                 <div className="flex items-end justify-between">
                   <div>
-                    <div className="text-xs uppercase tracking-wide text-slate-500">Composite</div>
+                    <div className="text-xs uppercase tracking-wide text-zinc-500">Composite</div>
                     <div className="text-3xl font-semibold tabular-nums text-white">
                       {sc.composite_score != null ? sc.composite_score.toFixed(0) : '—'}
                     </div>
@@ -328,7 +328,7 @@ export default function OriginatorProfilePage() {
                   <Badge tone={gradeTone(sc.grade)}>{sc.grade ?? 'n/a'}</Badge>
                 </div>
                 {sc.percentile != null && (
-                  <div className="text-xs text-slate-500">Portfolio percentile: {(sc.percentile * 100).toFixed(0)}%</div>
+                  <div className="text-xs text-zinc-500">Portfolio percentile: {(sc.percentile * 100).toFixed(0)}%</div>
                 )}
                 <div className="space-y-2">
                   {[
@@ -338,13 +338,13 @@ export default function OriginatorProfilePage() {
                     ['Re-presentment', sc.representment_score],
                   ].map(([label, val]) => (
                     <div key={label as string}>
-                      <div className="flex justify-between text-xs text-slate-400">
+                      <div className="flex justify-between text-xs text-zinc-400">
                         <span>{label as string}</span>
                         <span className="tabular-nums">{val != null ? Number(val).toFixed(0) : '—'}</span>
                       </div>
-                      <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                      <div className="mt-1 h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
                         <div
-                          className="h-full rounded-full bg-emerald-500"
+                          className="h-full rounded-full bg-amber-500"
                           style={{ width: `${Math.min(100, Math.max(0, Number(val ?? 0)))}%` }}
                         />
                       </div>
@@ -384,9 +384,9 @@ export default function OriginatorProfilePage() {
                   {forecasts.map((f, i) => (
                     <TR key={i}>
                       <TD className="capitalize">{f.rate_type ?? 'overall'}</TD>
-                      <TD className="text-slate-400">{f.model ?? '—'}</TD>
+                      <TD className="text-zinc-400">{f.model ?? '—'}</TD>
                       <TD className="text-right tabular-nums">{pct(f.current_rate)}</TD>
-                      <TD className="text-right tabular-nums text-slate-400">
+                      <TD className="text-right tabular-nums text-zinc-400">
                         {f.velocity_per_day != null ? (f.velocity_per_day * 100).toFixed(4) + '%' : '—'}
                       </TD>
                       <TD>{fmtDate(f.projected_breach_date)}</TD>
@@ -408,7 +408,7 @@ export default function OriginatorProfilePage() {
       <Card>
         <CardHeader>
           <h2 className="text-sm font-semibold text-white">Rate Snapshot Timeline</h2>
-          <p className="mt-0.5 text-xs text-slate-500">{snapshots.length} snapshot(s)</p>
+          <p className="mt-0.5 text-xs text-zinc-500">{snapshots.length} snapshot(s)</p>
         </CardHeader>
         <CardBody>
           {snapshots.length === 0 ? (
@@ -435,7 +435,7 @@ export default function OriginatorProfilePage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">Warning Letters</h2>
-            <Link href="/dashboard/letters" className="text-xs font-medium text-emerald-400 hover:text-emerald-300">
+            <Link href="/dashboard/letters" className="text-xs font-medium text-amber-400 hover:text-amber-300">
               All letters →
             </Link>
           </CardHeader>
@@ -458,8 +458,8 @@ export default function OriginatorProfilePage() {
                   {letters.map((l) => (
                     <TR key={l.id}>
                       <TD className="capitalize">{l.letter_type ?? '—'}</TD>
-                      <TD className="max-w-[200px] truncate text-slate-300">{l.subject ?? '—'}</TD>
-                      <TD className="text-slate-400">{fmtDate(l.response_due_date)}</TD>
+                      <TD className="max-w-[200px] truncate text-zinc-300">{l.subject ?? '—'}</TD>
+                      <TD className="text-zinc-400">{fmtDate(l.response_due_date)}</TD>
                       <TD>
                         <Badge tone={statusTone(l.status)}>{l.status ?? 'open'}</Badge>
                       </TD>
@@ -475,7 +475,7 @@ export default function OriginatorProfilePage() {
         <Card>
           <CardHeader className="flex items-center justify-between">
             <h2 className="text-sm font-semibold text-white">Remediation Cases</h2>
-            <Link href="/dashboard/cases" className="text-xs font-medium text-emerald-400 hover:text-emerald-300">
+            <Link href="/dashboard/cases" className="text-xs font-medium text-amber-400 hover:text-amber-300">
               All cases →
             </Link>
           </CardHeader>
@@ -497,9 +497,9 @@ export default function OriginatorProfilePage() {
                 <TBody>
                   {cases.map((c) => (
                     <TR key={c.id}>
-                      <TD className="max-w-[200px] truncate text-slate-300">{c.title ?? '—'}</TD>
-                      <TD className="capitalize text-slate-400">{c.priority ?? '—'}</TD>
-                      <TD className="text-slate-400">{fmtDate(c.created_at)}</TD>
+                      <TD className="max-w-[200px] truncate text-zinc-300">{c.title ?? '—'}</TD>
+                      <TD className="capitalize text-zinc-400">{c.priority ?? '—'}</TD>
+                      <TD className="text-zinc-400">{fmtDate(c.created_at)}</TD>
                       <TD>
                         <Badge tone={statusTone(c.status)}>{c.status ?? 'open'}</Badge>
                       </TD>

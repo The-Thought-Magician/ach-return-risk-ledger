@@ -67,9 +67,9 @@ function PayloadGrid({ data }: { data: Record<string, unknown> }) {
   return (
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-3">
       {entries.map(([k, v]) => (
-        <div key={k} className="rounded-lg border border-slate-800 bg-slate-950/40 px-3 py-2">
-          <div className="text-[11px] uppercase tracking-wide text-slate-500">{k.replace(/_/g, ' ')}</div>
-          <div className="mt-0.5 text-sm font-medium tabular-nums text-slate-200">
+        <div key={k} className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-3 py-2">
+          <div className="text-[11px] uppercase tracking-wide text-zinc-500">{k.replace(/_/g, ' ')}</div>
+          <div className="mt-0.5 text-sm font-medium tabular-nums text-zinc-200">
             {typeof v === 'boolean' ? (v ? 'Yes' : 'No') : String(v ?? '—')}
           </div>
         </div>
@@ -250,7 +250,7 @@ export default function ReportsPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Compliance Reports</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Generate point-in-time NACHA return-rate compliance reports for any originator or the full
             portfolio, then archive and review the snapshot.
           </p>
@@ -264,7 +264,7 @@ export default function ReportsPage() {
         </div>
       )}
       {actionMsg && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
           {actionMsg}
         </div>
       )}
@@ -283,12 +283,12 @@ export default function ReportsPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search reports..."
-            className="w-56 rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+            className="w-56 rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
           />
           <select
             value={originatorFilter}
             onChange={(e) => setOriginatorFilter(e.target.value)}
-            className="rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+            className="rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
           >
             <option value="">All scopes</option>
             <option value="portfolio">Portfolio-wide</option>
@@ -298,7 +298,7 @@ export default function ReportsPage() {
               </option>
             ))}
           </select>
-          <span className="ml-auto text-xs text-slate-500">
+          <span className="ml-auto text-xs text-zinc-500">
             {filtered.length} of {reports.length}
           </span>
         </CardHeader>
@@ -333,22 +333,22 @@ export default function ReportsPage() {
                     <TD className="font-medium text-white">{r.name}</TD>
                     <TD>
                       {r.originator_id ? (
-                        <span className="text-slate-300">{originatorName(r.originator_id)}</span>
+                        <span className="text-zinc-300">{originatorName(r.originator_id)}</span>
                       ) : (
                         <Badge tone="info">Portfolio</Badge>
                       )}
                     </TD>
-                    <TD className="whitespace-nowrap text-slate-300">
-                      {fmtDate(r.period_start)} <span className="text-slate-600">→</span> {fmtDate(r.period_end)}
+                    <TD className="whitespace-nowrap text-zinc-300">
+                      {fmtDate(r.period_start)} <span className="text-zinc-600">→</span> {fmtDate(r.period_end)}
                     </TD>
                     <TD>
                       {r.recurring ? (
                         <Badge tone="clear">Recurring</Badge>
                       ) : (
-                        <span className="text-slate-500">One-off</span>
+                        <span className="text-zinc-500">One-off</span>
                       )}
                     </TD>
-                    <TD className="whitespace-nowrap text-slate-400">{fmtDate(r.created_at)}</TD>
+                    <TD className="whitespace-nowrap text-zinc-400">{fmtDate(r.created_at)}</TD>
                     <TD className="text-right">
                       <div className="flex justify-end gap-2">
                         <Button variant="secondary" onClick={() => openDetail(r.id)}>
@@ -385,24 +385,24 @@ export default function ReportsPage() {
       >
         <div className="space-y-4">
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Report name
             </label>
             <input
               value={form.name}
               onChange={(e) => setForm((f) => ({ ...f, name: e.target.value }))}
               placeholder="Auto-named from period if left blank"
-              className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
             />
           </div>
           <div>
-            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
               Scope
             </label>
             <select
               value={form.originator_id}
               onChange={(e) => setForm((f) => ({ ...f, originator_id: e.target.value }))}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
             >
               <option value="">Portfolio-wide (all originators)</option>
               {originators.map((o) => (
@@ -414,34 +414,34 @@ export default function ReportsPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Period start
               </label>
               <input
                 type="date"
                 value={form.period_start}
                 onChange={(e) => setForm((f) => ({ ...f, period_start: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
               />
             </div>
             <div>
-              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">
+              <label className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">
                 Period end
               </label>
               <input
                 type="date"
                 value={form.period_end}
                 onChange={(e) => setForm((f) => ({ ...f, period_end: e.target.value }))}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950/60 px-3 py-2 text-sm text-slate-200 focus:border-emerald-500/50 focus:outline-none"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950/60 px-3 py-2 text-sm text-zinc-200 focus:border-amber-500/50 focus:outline-none"
               />
             </div>
           </div>
-          <label className="flex cursor-pointer items-center gap-2 text-sm text-slate-300">
+          <label className="flex cursor-pointer items-center gap-2 text-sm text-zinc-300">
             <input
               type="checkbox"
               checked={form.recurring}
               onChange={(e) => setForm((f) => ({ ...f, recurring: e.target.checked }))}
-              className="h-4 w-4 rounded border-slate-700 bg-slate-950 text-emerald-500 focus:ring-emerald-500/50"
+              className="h-4 w-4 rounded border-zinc-700 bg-zinc-950 text-amber-500 focus:ring-amber-500/50"
             />
             Mark as recurring (regenerate on each period)
           </label>
@@ -493,7 +493,7 @@ export default function ReportsPage() {
 
             {payloadSummary && Object.keys(payloadSummary.scalar).length > 0 && (
               <div>
-                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">
                   Summary metrics
                 </h3>
                 <PayloadGrid data={payloadSummary.scalar} />
@@ -512,10 +512,10 @@ export default function ReportsPage() {
                 ).slice(0, 6)
                 return (
                   <div key={key}>
-                    <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                    <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">
                       {key.replace(/_/g, ' ')}
                     </h3>
-                    <div className="overflow-hidden rounded-lg border border-slate-800">
+                    <div className="overflow-hidden rounded-lg border border-zinc-800">
                       <Table>
                         <THead>
                           <TR className="hover:bg-transparent">
@@ -550,7 +550,7 @@ export default function ReportsPage() {
               }
               return (
                 <div key={key}>
-                  <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+                  <h3 className="mb-2 text-xs font-semibold uppercase tracking-wide text-zinc-500">
                     {key.replace(/_/g, ' ')}
                   </h3>
                   <PayloadGrid data={val as Record<string, unknown>} />
@@ -559,7 +559,7 @@ export default function ReportsPage() {
             })}
 
             {(!detail.payload || Object.keys(detail.payload).length === 0) && (
-              <p className="text-sm text-slate-500">This report has no stored payload.</p>
+              <p className="text-sm text-zinc-500">This report has no stored payload.</p>
             )}
           </div>
         ) : null}
@@ -581,7 +581,7 @@ export default function ReportsPage() {
           </>
         }
       >
-        <p className="text-sm text-slate-300">
+        <p className="text-sm text-zinc-300">
           Delete <span className="font-medium text-white">{toDelete?.name}</span>? This permanently
           removes the archived compliance snapshot.
         </p>

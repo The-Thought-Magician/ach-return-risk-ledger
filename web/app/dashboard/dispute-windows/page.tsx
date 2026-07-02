@@ -144,7 +144,7 @@ export default function DisputeWindowsPage() {
       <header className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-xl font-semibold text-white">Dispute Windows</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             60-day consumer dispute tracker. Each debit settlement opens a window that closes 60 days
             after settlement; open exposure is the dollar amount still re-disputable.
           </p>
@@ -155,7 +155,7 @@ export default function DisputeWindowsPage() {
       </header>
 
       {notice && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-200">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-200">
           {notice}
         </div>
       )}
@@ -189,11 +189,11 @@ export default function DisputeWindowsPage() {
       <Card>
         <CardHeader className="flex items-center justify-between">
           <h2 className="text-sm font-semibold text-white">60-day expiry horizon</h2>
-          <span className="text-xs text-slate-500">Non-resolved windows by days to expiry</span>
+          <span className="text-xs text-zinc-500">Non-resolved windows by days to expiry</span>
         </CardHeader>
         <CardBody>
           {horizon.buckets.every((b) => b === 0) ? (
-            <p className="text-sm text-slate-500">No open windows expiring in the next 60 days.</p>
+            <p className="text-sm text-zinc-500">No open windows expiring in the next 60 days.</p>
           ) : (
             <div className="flex items-end gap-2" style={{ height: 140 }}>
               {horizon.buckets.map((count, i) => {
@@ -201,19 +201,19 @@ export default function DisputeWindowsPage() {
                 const near = i < 2
                 return (
                   <div key={i} className="flex flex-1 flex-col items-center justify-end gap-1">
-                    <span className="text-[10px] tabular-nums text-slate-400">{count || ''}</span>
+                    <span className="text-[10px] tabular-nums text-zinc-400">{count || ''}</span>
                     <div
-                      className={`w-full rounded-t ${near ? 'bg-red-500/70' : 'bg-emerald-500/60'}`}
+                      className={`w-full rounded-t ${near ? 'bg-red-500/70' : 'bg-amber-500/60'}`}
                       style={{ height: Math.max(count ? 4 : 0, h) }}
                       title={`${i * 5}-${i * 5 + 5} days: ${count}`}
                     />
-                    <span className="text-[10px] text-slate-600">{i * 5}</span>
+                    <span className="text-[10px] text-zinc-600">{i * 5}</span>
                   </div>
                 )
               })}
             </div>
           )}
-          <p className="mt-2 text-[11px] text-slate-600">Days to expiry (bucketed in 5-day steps)</p>
+          <p className="mt-2 text-[11px] text-zinc-600">Days to expiry (bucketed in 5-day steps)</p>
         </CardBody>
       </Card>
 
@@ -230,8 +230,8 @@ export default function DisputeWindowsPage() {
                 }}
                 className={`rounded-md px-2.5 py-1 text-xs font-medium ${
                   expiringDays === d
-                    ? 'bg-emerald-600 text-white'
-                    : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                    ? 'bg-amber-600 text-white'
+                    : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
                 }`}
               >
                 {d}d
@@ -241,7 +241,7 @@ export default function DisputeWindowsPage() {
         </CardHeader>
         <CardBody>
           {expiring.length === 0 ? (
-            <p className="text-sm text-slate-500">No windows expiring in this period. Good standing.</p>
+            <p className="text-sm text-zinc-500">No windows expiring in this period. Good standing.</p>
           ) : (
             <Table>
               <THead>
@@ -259,11 +259,11 @@ export default function DisputeWindowsPage() {
                   const dleft = daysUntil(w.window_expiry)
                   return (
                     <TR key={w.id}>
-                      <TD className="font-mono text-xs text-slate-300">
+                      <TD className="font-mono text-xs text-zinc-300">
                         {w.originated_entry_id ? String(w.originated_entry_id).slice(0, 8) : '—'}
                       </TD>
-                      <TD className="text-slate-400">{fmtDate(w.settlement_date)}</TD>
-                      <TD className="text-slate-400">{fmtDate(w.window_expiry)}</TD>
+                      <TD className="text-zinc-400">{fmtDate(w.settlement_date)}</TD>
+                      <TD className="text-zinc-400">{fmtDate(w.window_expiry)}</TD>
                       <TD className="text-right tabular-nums">
                         <span className={dleft != null && dleft <= 7 ? 'text-red-300' : 'text-amber-300'}>
                           {dleft != null ? dleft : '—'}
@@ -293,8 +293,8 @@ export default function DisputeWindowsPage() {
                   onClick={() => setStatusFilter(s)}
                   className={`rounded-md px-2.5 py-1 text-xs font-medium capitalize ${
                     statusFilter === s
-                      ? 'bg-emerald-600 text-white'
-                      : 'bg-slate-800 text-slate-300 hover:bg-slate-700'
+                      ? 'bg-amber-600 text-white'
+                      : 'bg-zinc-800 text-zinc-300 hover:bg-zinc-700'
                   }`}
                 >
                   {s}
@@ -305,7 +305,7 @@ export default function DisputeWindowsPage() {
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               placeholder="Search entry / originator…"
-              className="w-56 rounded-lg border border-slate-700 bg-slate-950 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 focus:border-emerald-500/50 focus:outline-none"
+              className="w-56 rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 focus:border-amber-500/50 focus:outline-none"
             />
           </div>
         </CardHeader>
@@ -338,21 +338,21 @@ export default function DisputeWindowsPage() {
                   const dleft = daysUntil(w.window_expiry)
                   return (
                     <TR key={w.id}>
-                      <TD className="font-mono text-xs text-slate-300">
+                      <TD className="font-mono text-xs text-zinc-300">
                         {w.originated_entry_id ? String(w.originated_entry_id).slice(0, 8) : '—'}
                       </TD>
-                      <TD className="font-mono text-xs text-slate-400">
+                      <TD className="font-mono text-xs text-zinc-400">
                         {w.originator_id ? String(w.originator_id).slice(0, 8) : '—'}
                       </TD>
-                      <TD className="text-slate-400">{fmtDate(w.settlement_date)}</TD>
-                      <TD className="text-slate-400">{fmtDate(w.window_expiry)}</TD>
+                      <TD className="text-zinc-400">{fmtDate(w.settlement_date)}</TD>
+                      <TD className="text-zinc-400">{fmtDate(w.window_expiry)}</TD>
                       <TD className="text-right tabular-nums">
                         {dleft == null ? (
                           '—'
                         ) : dleft < 0 ? (
-                          <span className="text-slate-600">closed</span>
+                          <span className="text-zinc-600">closed</span>
                         ) : (
-                          <span className={dleft <= 7 ? 'text-red-300' : 'text-slate-300'}>{dleft}</span>
+                          <span className={dleft <= 7 ? 'text-red-300' : 'text-zinc-300'}>{dleft}</span>
                         )}
                       </TD>
                       <TD className="text-right tabular-nums">{fmtCents(w.amount_cents)}</TD>

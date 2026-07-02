@@ -297,7 +297,7 @@ export default function ReturnsPage() {
       <div className="flex flex-wrap items-end justify-between gap-4">
         <div>
           <h1 className="text-xl font-semibold text-white">Returns</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Return-entry ledger. Unauthorized and administrative returns drive your NACHA rate
             thresholds. Match returns to originated entries to close the loop.
           </p>
@@ -317,19 +317,19 @@ export default function ReturnsPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Top Return Codes</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Top Return Codes</h2>
         </CardHeader>
         <CardBody className="space-y-2">
           {codeDist.length === 0 ? (
-            <p className="text-sm text-slate-500">No returns recorded yet.</p>
+            <p className="text-sm text-zinc-500">No returns recorded yet.</p>
           ) : (
             codeDist.map((d) => (
               <div key={d.code} className="flex items-center gap-3">
-                <span className="w-12 font-mono text-xs text-slate-400">{d.code}</span>
-                <div className="h-3 flex-1 overflow-hidden rounded-full bg-slate-800">
-                  <div className="h-full rounded-full bg-emerald-500/70" style={{ width: `${d.pct}%` }} />
+                <span className="w-12 font-mono text-xs text-zinc-400">{d.code}</span>
+                <div className="h-3 flex-1 overflow-hidden rounded-full bg-zinc-800">
+                  <div className="h-full rounded-full bg-amber-500/70" style={{ width: `${d.pct}%` }} />
                 </div>
-                <span className="w-10 text-right text-xs tabular-nums text-slate-400">{d.count}</span>
+                <span className="w-10 text-right text-xs tabular-nums text-zinc-400">{d.count}</span>
               </div>
             ))
           )}
@@ -338,15 +338,15 @@ export default function ReturnsPage() {
 
       <Card>
         <CardHeader>
-          <h2 className="text-sm font-semibold text-slate-200">Filters</h2>
+          <h2 className="text-sm font-semibold text-zinc-200">Filters</h2>
         </CardHeader>
         <CardBody className="grid grid-cols-1 gap-3 md:grid-cols-2 lg:grid-cols-5">
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Originator
             <select
               value={filterOriginator}
               onChange={(e) => setFilterOriginator(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
             >
               <option value="">All</option>
               {originators.map((o) => (
@@ -356,22 +356,22 @@ export default function ReturnsPage() {
               ))}
             </select>
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Return Code
             <input
               type="text"
               placeholder="e.g. R01"
               value={filterCode}
               onChange={(e) => setFilterCode(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm uppercase text-slate-100 placeholder:text-slate-600"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm uppercase text-zinc-100 placeholder:text-zinc-600"
             />
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Category
             <select
               value={filterCategory}
               onChange={(e) => setFilterCategory(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100"
             >
               <option value="">All</option>
               {CATEGORIES.map((c) => (
@@ -381,14 +381,14 @@ export default function ReturnsPage() {
               ))}
             </select>
           </label>
-          <label className="flex flex-col gap-1 text-xs text-slate-400">
+          <label className="flex flex-col gap-1 text-xs text-zinc-400">
             Search
             <input
               type="text"
               placeholder="code / ref / originator"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-sm text-slate-100 placeholder:text-slate-600"
+              className="rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-sm text-zinc-100 placeholder:text-zinc-600"
             />
           </label>
           <div className="flex items-end">
@@ -407,11 +407,11 @@ export default function ReturnsPage() {
 
       <Card>
         <CardHeader className="flex items-center justify-between">
-          <div className="flex gap-1 rounded-lg border border-slate-800 bg-slate-950 p-1">
+          <div className="flex gap-1 rounded-lg border border-zinc-800 bg-zinc-950 p-1">
             <button
               onClick={() => setTab('all')}
               className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                tab === 'all' ? 'bg-slate-800 text-white' : 'text-slate-400 hover:text-white'
+                tab === 'all' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white'
               }`}
             >
               All Returns
@@ -419,7 +419,7 @@ export default function ReturnsPage() {
             <button
               onClick={() => setTab('unmatched')}
               className={`rounded-md px-3 py-1.5 text-sm font-medium transition-colors ${
-                tab === 'unmatched' ? 'bg-slate-800 text-white' : 'text-slate-400 hover:text-white'
+                tab === 'unmatched' ? 'bg-zinc-800 text-white' : 'text-zinc-400 hover:text-white'
               }`}
             >
               Unmatched Queue
@@ -430,7 +430,7 @@ export default function ReturnsPage() {
               )}
             </button>
           </div>
-          <span className="text-xs text-slate-500">{visible.length} rows</span>
+          <span className="text-xs text-zinc-500">{visible.length} rows</span>
         </CardHeader>
         <CardBody className="p-0">
           {loading ? (
@@ -478,7 +478,7 @@ export default function ReturnsPage() {
                     <TD>{fmtDate(r.return_date)}</TD>
                     <TD className="text-right tabular-nums">{fmtUSD(r.amount_cents)}</TD>
                     <TD>
-                      {r.is_late ? <Badge tone="breach">late</Badge> : <span className="text-xs text-slate-600">—</span>}
+                      {r.is_late ? <Badge tone="breach">late</Badge> : <span className="text-xs text-zinc-600">—</span>}
                     </TD>
                     <TD>
                       {r.matched ? (
@@ -542,11 +542,11 @@ export default function ReturnsPage() {
             </div>
           )}
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-300">Originator</span>
+            <span className="mb-1 block text-zinc-300">Originator</span>
             <select
               value={form.originator_id}
               onChange={(e) => setForm({ ...form, originator_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               required
             >
               <option value="">Select originator</option>
@@ -559,25 +559,25 @@ export default function ReturnsPage() {
           </label>
           <div className="grid grid-cols-2 gap-3">
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Return Code</span>
+              <span className="mb-1 block text-zinc-300">Return Code</span>
               <input
                 type="text"
                 value={form.return_code}
                 onChange={(e) => setForm({ ...form, return_code: e.target.value })}
                 placeholder="R01"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 uppercase text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 uppercase text-zinc-100"
                 required
               />
-              <span className="mt-1 block text-xs text-slate-500">
+              <span className="mt-1 block text-xs text-zinc-500">
                 Category auto-classifies from the code on save.
               </span>
             </label>
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Category</span>
+              <span className="mb-1 block text-zinc-300">Category</span>
               <select
                 value={form.category}
                 onChange={(e) => setForm({ ...form, category: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
               >
                 {CATEGORIES.map((c) => (
                   <option key={c} value={c}>
@@ -589,17 +589,17 @@ export default function ReturnsPage() {
           </div>
           <div className="grid grid-cols-2 gap-3">
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Return Date</span>
+              <span className="mb-1 block text-zinc-300">Return Date</span>
               <input
                 type="date"
                 value={form.return_date}
                 onChange={(e) => setForm({ ...form, return_date: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
                 required
               />
             </label>
             <label className="block text-sm">
-              <span className="mb-1 block text-slate-300">Amount (USD)</span>
+              <span className="mb-1 block text-zinc-300">Amount (USD)</span>
               <input
                 type="number"
                 step="0.01"
@@ -607,18 +607,18 @@ export default function ReturnsPage() {
                 value={form.amount}
                 onChange={(e) => setForm({ ...form, amount: e.target.value })}
                 placeholder="0.00"
-                className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
                 required
               />
             </label>
           </div>
           <label className="block text-sm">
-            <span className="mb-1 block text-slate-300">External Ref</span>
+            <span className="mb-1 block text-zinc-300">External Ref</span>
             <input
               type="text"
               value={form.external_ref}
               onChange={(e) => setForm({ ...form, external_ref: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-950 px-3 py-2 text-slate-100"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-950 px-3 py-2 text-zinc-100"
             />
           </label>
         </form>
@@ -647,22 +647,22 @@ export default function ReturnsPage() {
                 {matchError}
               </div>
             )}
-            <div className="rounded-lg border border-slate-800 bg-slate-950 px-4 py-3 text-sm">
+            <div className="rounded-lg border border-zinc-800 bg-zinc-950 px-4 py-3 text-sm">
               <div className="flex items-center justify-between">
-                <span className="text-slate-400">Return</span>
+                <span className="text-zinc-400">Return</span>
                 <Badge tone={categoryTone(matchTarget.category)}>{matchTarget.return_code}</Badge>
               </div>
               <div className="mt-1 flex items-center justify-between">
-                <span className="text-slate-300">{originatorName(matchTarget.originator_id)}</span>
+                <span className="text-zinc-300">{originatorName(matchTarget.originator_id)}</span>
                 <span className="tabular-nums text-white">{fmtUSD(matchTarget.amount_cents)}</span>
               </div>
             </div>
             <div>
-              <span className="mb-2 block text-sm text-slate-300">Select originated entry</span>
+              <span className="mb-2 block text-sm text-zinc-300">Select originated entry</span>
               {candidateLoading ? (
                 <PageSpinner label="Loading candidates..." />
               ) : candidates.length === 0 ? (
-                <p className="text-sm text-slate-500">
+                <p className="text-sm text-zinc-500">
                   No originated entries found for this originator. Add an entry first.
                 </p>
               ) : (
@@ -672,8 +672,8 @@ export default function ReturnsPage() {
                       key={e.id}
                       className={`flex cursor-pointer items-center justify-between gap-3 rounded-lg border px-3 py-2 text-sm ${
                         selectedEntry === e.id
-                          ? 'border-emerald-500/50 bg-emerald-500/10'
-                          : 'border-slate-800 bg-slate-950 hover:border-slate-700'
+                          ? 'border-amber-500/50 bg-amber-500/10'
+                          : 'border-zinc-800 bg-zinc-950 hover:border-zinc-700'
                       }`}
                     >
                       <span className="flex items-center gap-2">
@@ -683,12 +683,12 @@ export default function ReturnsPage() {
                           value={e.id}
                           checked={selectedEntry === e.id}
                           onChange={() => setSelectedEntry(e.id)}
-                          className="accent-emerald-500"
+                          className="accent-amber-500"
                         />
-                        <span className="text-slate-200">{fmtDate(e.entry_date)}</span>
+                        <span className="text-zinc-200">{fmtDate(e.entry_date)}</span>
                         <Badge tone="neutral">{e.sec_code}</Badge>
                         {e.trace_number && (
-                          <span className="font-mono text-xs text-slate-500">{e.trace_number}</span>
+                          <span className="font-mono text-xs text-zinc-500">{e.trace_number}</span>
                         )}
                       </span>
                       <span className="tabular-nums text-white">{fmtUSD(e.amount_cents)}</span>

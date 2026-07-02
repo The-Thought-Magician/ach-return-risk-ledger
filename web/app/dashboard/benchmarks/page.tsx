@@ -71,7 +71,7 @@ function PercentileBar({ b }: { b: Benchmark }) {
   const pct = (v: number) => Math.max(0, Math.min(100, (num(v) / scaleMax) * 100))
 
   const ticks = [
-    { key: 'p25', value: num(b.p25), color: 'bg-emerald-400', label: 'P25' },
+    { key: 'p25', value: num(b.p25), color: 'bg-amber-400', label: 'P25' },
     { key: 'p50', value: num(b.p50), color: 'bg-sky-400', label: 'P50' },
     { key: 'p75', value: num(b.p75), color: 'bg-amber-400', label: 'P75' },
     { key: 'p90', value: num(b.p90), color: 'bg-orange-400', label: 'P90' },
@@ -79,10 +79,10 @@ function PercentileBar({ b }: { b: Benchmark }) {
 
   return (
     <div>
-      <div className="relative h-9 w-full rounded-lg bg-slate-800/60">
+      <div className="relative h-9 w-full rounded-lg bg-zinc-800/60">
         {/* gradient fill from p25 to p90 */}
         <div
-          className="absolute top-0 h-full rounded-lg bg-gradient-to-r from-emerald-500/30 via-amber-500/25 to-orange-500/30"
+          className="absolute top-0 h-full rounded-lg bg-gradient-to-r from-amber-500/30 via-amber-500/25 to-orange-500/30"
           style={{ left: `${pct(b.p25)}%`, width: `${Math.max(0, pct(b.p90) - pct(b.p25))}%` }}
         />
         {ticks.map((t) => (
@@ -105,7 +105,7 @@ function PercentileBar({ b }: { b: Benchmark }) {
           </div>
         )}
       </div>
-      <div className="mt-1.5 flex flex-wrap gap-3 text-[11px] text-slate-400">
+      <div className="mt-1.5 flex flex-wrap gap-3 text-[11px] text-zinc-400">
         {ticks.map((t) => (
           <span key={t.key} className="inline-flex items-center gap-1">
             <span className={`inline-block h-2 w-2 rounded-full ${t.color}`} />
@@ -186,7 +186,7 @@ export default function BenchmarksPage() {
       <div className="flex flex-wrap items-start justify-between gap-4">
         <div>
           <h1 className="text-2xl font-semibold text-white">Portfolio Benchmarks</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Percentile distribution (P25–P90) of return-rate metrics across your originator portfolio,
             overlaid against NACHA regulatory reference ceilings.
           </p>
@@ -202,7 +202,7 @@ export default function BenchmarksPage() {
         </div>
       )}
       {actionMsg && (
-        <div className="rounded-lg border border-emerald-500/30 bg-emerald-500/10 px-4 py-3 text-sm text-emerald-300">
+        <div className="rounded-lg border border-amber-500/30 bg-amber-500/10 px-4 py-3 text-sm text-amber-300">
           {actionMsg}
         </div>
       )}
@@ -255,16 +255,16 @@ export default function BenchmarksPage() {
                     <PercentileBar b={b} />
                     <div className="grid grid-cols-4 gap-2 text-center">
                       {(['p25', 'p50', 'p75', 'p90'] as const).map((k) => (
-                        <div key={k} className="rounded-lg border border-slate-800 bg-slate-950/40 px-2 py-2">
-                          <div className="text-[11px] uppercase tracking-wide text-slate-500">{k}</div>
-                          <div className="mt-0.5 text-sm font-semibold tabular-nums text-slate-200">
+                        <div key={k} className="rounded-lg border border-zinc-800 bg-zinc-950/40 px-2 py-2">
+                          <div className="text-[11px] uppercase tracking-wide text-zinc-500">{k}</div>
+                          <div className="mt-0.5 text-sm font-semibold tabular-nums text-zinc-200">
                             {fmtPct(b[k])}
                           </div>
                         </div>
                       ))}
                     </div>
                     {band && (
-                      <div className="text-xs text-slate-500">
+                      <div className="text-xs text-zinc-500">
                         NACHA {band.label}: <span className="text-red-300">{band.limit.toFixed(2)}%</span>
                       </div>
                     )}
@@ -299,16 +299,16 @@ export default function BenchmarksPage() {
                     return (
                       <TR key={`row-${b.id}`}>
                         <TD className="font-medium text-white">{fmtMetric(b.metric)}</TD>
-                        <TD className="text-right tabular-nums text-slate-300">{fmtPct(b.p25)}</TD>
-                        <TD className="text-right tabular-nums text-slate-300">{fmtPct(b.p50)}</TD>
-                        <TD className="text-right tabular-nums text-slate-300">{fmtPct(b.p75)}</TD>
-                        <TD className="text-right tabular-nums text-slate-300">{fmtPct(b.p90)}</TD>
-                        <TD className="text-right tabular-nums text-slate-400">
+                        <TD className="text-right tabular-nums text-zinc-300">{fmtPct(b.p25)}</TD>
+                        <TD className="text-right tabular-nums text-zinc-300">{fmtPct(b.p50)}</TD>
+                        <TD className="text-right tabular-nums text-zinc-300">{fmtPct(b.p75)}</TD>
+                        <TD className="text-right tabular-nums text-zinc-300">{fmtPct(b.p90)}</TD>
+                        <TD className="text-right tabular-nums text-zinc-400">
                           {band ? `${band.limit.toFixed(2)}%` : '—'}
                         </TD>
                         <TD>
                           {!band ? (
-                            <span className="text-slate-500">—</span>
+                            <span className="text-zinc-500">—</span>
                           ) : medianOver ? (
                             <Badge tone="breach">Median over</Badge>
                           ) : p90Over ? (
@@ -331,19 +331,19 @@ export default function BenchmarksPage() {
             </CardHeader>
             <CardBody className="grid grid-cols-1 gap-3 sm:grid-cols-3">
               <div className="rounded-lg border border-red-500/20 bg-red-500/5 px-4 py-3">
-                <div className="text-xs uppercase tracking-wide text-slate-500">Unauthorized</div>
+                <div className="text-xs uppercase tracking-wide text-zinc-500">Unauthorized</div>
                 <div className="mt-1 text-xl font-semibold tabular-nums text-red-300">0.50%</div>
-                <div className="mt-1 text-xs text-slate-500">R05, R07, R10, R11, R29, R51</div>
+                <div className="mt-1 text-xs text-zinc-500">R05, R07, R10, R11, R29, R51</div>
               </div>
               <div className="rounded-lg border border-orange-500/20 bg-orange-500/5 px-4 py-3">
-                <div className="text-xs uppercase tracking-wide text-slate-500">Administrative</div>
+                <div className="text-xs uppercase tracking-wide text-zinc-500">Administrative</div>
                 <div className="mt-1 text-xl font-semibold tabular-nums text-orange-300">3.00%</div>
-                <div className="mt-1 text-xs text-slate-500">R02, R03, R04</div>
+                <div className="mt-1 text-xs text-zinc-500">R02, R03, R04</div>
               </div>
               <div className="rounded-lg border border-amber-500/20 bg-amber-500/5 px-4 py-3">
-                <div className="text-xs uppercase tracking-wide text-slate-500">Overall</div>
+                <div className="text-xs uppercase tracking-wide text-zinc-500">Overall</div>
                 <div className="mt-1 text-xl font-semibold tabular-nums text-amber-300">15.00%</div>
-                <div className="mt-1 text-xs text-slate-500">All return codes</div>
+                <div className="mt-1 text-xs text-zinc-500">All return codes</div>
               </div>
             </CardBody>
           </Card>

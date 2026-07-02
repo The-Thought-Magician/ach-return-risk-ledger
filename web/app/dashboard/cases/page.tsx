@@ -276,7 +276,7 @@ export default function CasesPage() {
       <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h1 className="text-xl font-semibold text-white">Remediation Cases</h1>
-          <p className="mt-1 text-sm text-slate-400">
+          <p className="mt-1 text-sm text-zinc-400">
             Manage corrective-action cases tied to originators and warning letters, with action checklists and notes.
           </p>
         </div>
@@ -298,7 +298,7 @@ export default function CasesPage() {
             <select
               value={statusFilter}
               onChange={(e) => setStatusFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200"
             >
               <option value="">All statuses</option>
               {STATUSES.map((s) => (
@@ -310,7 +310,7 @@ export default function CasesPage() {
             <select
               value={originatorFilter}
               onChange={(e) => setOriginatorFilter(e.target.value)}
-              className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200"
+              className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200"
             >
               <option value="">All originators</option>
               {originators.map((o) => (
@@ -324,7 +324,7 @@ export default function CasesPage() {
             value={search}
             onChange={(e) => setSearch(e.target.value)}
             placeholder="Search title, description, originator…"
-            className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-1.5 text-sm text-slate-200 placeholder:text-slate-600 sm:w-72"
+            className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-1.5 text-sm text-zinc-200 placeholder:text-zinc-600 sm:w-72"
           />
         </CardHeader>
         <CardBody className="p-0">
@@ -373,22 +373,22 @@ export default function CasesPage() {
                     <TD>
                       <button
                         onClick={() => openDetail(c.id)}
-                        className="text-left font-medium text-white hover:text-emerald-300"
+                        className="text-left font-medium text-white hover:text-amber-300"
                       >
                         {c.title}
                       </button>
                       {c.description && (
-                        <div className="mt-0.5 line-clamp-1 max-w-md text-xs text-slate-500">{c.description}</div>
+                        <div className="mt-0.5 line-clamp-1 max-w-md text-xs text-zinc-500">{c.description}</div>
                       )}
                     </TD>
-                    <TD className="text-slate-300">{orgName(c.originator_id)}</TD>
+                    <TD className="text-zinc-300">{orgName(c.originator_id)}</TD>
                     <TD>
                       <Badge tone={priorityTone[c.priority] ?? 'neutral'}>{c.priority}</Badge>
                     </TD>
                     <TD>
                       <Badge tone={statusTone(c.status)}>{c.status}</Badge>
                     </TD>
-                    <TD className="text-slate-400">{fmtDate(c.updated_at ?? c.created_at)}</TD>
+                    <TD className="text-zinc-400">{fmtDate(c.updated_at ?? c.created_at)}</TD>
                     <TD className="text-right">
                       <button
                         onClick={() => openDetail(c.id)}
@@ -431,7 +431,7 @@ export default function CasesPage() {
             <select
               value={form.originator_id}
               onChange={(e) => setForm({ ...form, originator_id: e.target.value })}
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
             >
               <option value="">Select originator…</option>
               {originators.map((o) => (
@@ -446,7 +446,7 @@ export default function CasesPage() {
               value={form.title}
               onChange={(e) => setForm({ ...form, title: e.target.value })}
               placeholder="e.g. Reduce unauthorized returns below 0.5%"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600"
             />
           </Field>
           <div className="grid grid-cols-2 gap-4">
@@ -454,7 +454,7 @@ export default function CasesPage() {
               <select
                 value={form.priority}
                 onChange={(e) => setForm({ ...form, priority: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               >
                 {PRIORITIES.map((p) => (
                   <option key={p} value={p}>
@@ -467,7 +467,7 @@ export default function CasesPage() {
               <select
                 value={form.status}
                 onChange={(e) => setForm({ ...form, status: e.target.value })}
-                className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
               >
                 {STATUSES.map((s) => (
                   <option key={s} value={s}>
@@ -483,7 +483,7 @@ export default function CasesPage() {
               onChange={(e) => setForm({ ...form, description: e.target.value })}
               rows={4}
               placeholder="Context, root cause, plan of action…"
-              className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600"
+              className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600"
             />
           </Field>
         </div>
@@ -513,11 +513,11 @@ export default function CasesPage() {
             <div className="flex flex-wrap items-center gap-2">
               <Badge tone={priorityTone[detail.priority] ?? 'neutral'}>{detail.priority}</Badge>
               <Badge tone={statusTone(detail.status)}>{detail.status}</Badge>
-              <span className="text-xs text-slate-500">{orgName(detail.originator_id)}</span>
+              <span className="text-xs text-zinc-500">{orgName(detail.originator_id)}</span>
             </div>
 
             {detail.description && (
-              <p className="whitespace-pre-wrap rounded-lg border border-slate-800 bg-slate-950/40 p-3 text-slate-200">
+              <p className="whitespace-pre-wrap rounded-lg border border-zinc-800 bg-zinc-950/40 p-3 text-zinc-200">
                 {detail.description}
               </p>
             )}
@@ -529,7 +529,7 @@ export default function CasesPage() {
                   value={detail.status}
                   disabled={busy}
                   onChange={(e) => patchCase({ status: e.target.value })}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
                 >
                   {STATUSES.map((s) => (
                     <option key={s} value={s}>
@@ -543,7 +543,7 @@ export default function CasesPage() {
                   value={detail.priority}
                   disabled={busy}
                   onChange={(e) => patchCase({ priority: e.target.value })}
-                  className="w-full rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200"
+                  className="w-full rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200"
                 >
                   {PRIORITIES.map((p) => (
                     <option key={p} value={p}>
@@ -557,14 +557,14 @@ export default function CasesPage() {
             {/* Action items */}
             <div>
               <div className="mb-2 flex items-center justify-between">
-                <h3 className="text-xs font-medium uppercase tracking-wide text-slate-500">
+                <h3 className="text-xs font-medium uppercase tracking-wide text-zinc-500">
                   Action items {actions.length > 0 && `(${doneCount}/${actions.length})`}
                 </h3>
               </div>
               {actions.length > 0 && (
-                <div className="mb-2 h-1.5 w-full overflow-hidden rounded-full bg-slate-800">
+                <div className="mb-2 h-1.5 w-full overflow-hidden rounded-full bg-zinc-800">
                   <div
-                    className="h-full rounded-full bg-emerald-500 transition-all"
+                    className="h-full rounded-full bg-amber-500 transition-all"
                     style={{ width: `${actions.length ? (doneCount / actions.length) * 100 : 0}%` }}
                   />
                 </div>
@@ -573,23 +573,23 @@ export default function CasesPage() {
                 {actions.map((a) => (
                   <li
                     key={a.id}
-                    className="flex items-center gap-3 rounded-lg border border-slate-800 bg-slate-950/30 px-3 py-2"
+                    className="flex items-center gap-3 rounded-lg border border-zinc-800 bg-zinc-950/30 px-3 py-2"
                   >
                     <input
                       type="checkbox"
                       checked={a.done}
                       onChange={() => toggleAction(a)}
-                      className="h-4 w-4 accent-emerald-500"
+                      className="h-4 w-4 accent-amber-500"
                     />
-                    <span className={`flex-1 ${a.done ? 'text-slate-500 line-through' : 'text-slate-200'}`}>
+                    <span className={`flex-1 ${a.done ? 'text-zinc-500 line-through' : 'text-zinc-200'}`}>
                       {a.title}
                     </span>
-                    {a.assigned_to && <span className="text-xs text-slate-500">{a.assigned_to}</span>}
+                    {a.assigned_to && <span className="text-xs text-zinc-500">{a.assigned_to}</span>}
                     {a.due_date && <span className="text-xs text-amber-400">{fmtDate(a.due_date)}</span>}
                   </li>
                 ))}
                 {actions.length === 0 && (
-                  <li className="rounded-lg border border-dashed border-slate-800 px-3 py-3 text-center text-xs text-slate-500">
+                  <li className="rounded-lg border border-dashed border-zinc-800 px-3 py-3 text-center text-xs text-zinc-500">
                     No action items yet.
                   </li>
                 )}
@@ -599,19 +599,19 @@ export default function CasesPage() {
                   value={newAction.title}
                   onChange={(e) => setNewAction({ ...newAction, title: e.target.value })}
                   placeholder="New action item…"
-                  className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600"
+                  className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600"
                 />
                 <input
                   type="date"
                   value={newAction.due_date}
                   onChange={(e) => setNewAction({ ...newAction, due_date: e.target.value })}
-                  className="rounded-lg border border-slate-700 bg-slate-900 px-2 py-2 text-sm text-slate-200"
+                  className="rounded-lg border border-zinc-700 bg-zinc-900 px-2 py-2 text-sm text-zinc-200"
                 />
                 <input
                   value={newAction.assigned_to}
                   onChange={(e) => setNewAction({ ...newAction, assigned_to: e.target.value })}
                   placeholder="Assignee"
-                  className="rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600"
+                  className="rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600"
                 />
                 <Button onClick={addAction} disabled={busy || !newAction.title.trim()}>
                   Add
@@ -621,16 +621,16 @@ export default function CasesPage() {
 
             {/* Notes */}
             <div>
-              <h3 className="mb-2 text-xs font-medium uppercase tracking-wide text-slate-500">Notes</h3>
+              <h3 className="mb-2 text-xs font-medium uppercase tracking-wide text-zinc-500">Notes</h3>
               <ul className="space-y-1.5">
                 {notes.map((n, i) => (
-                  <li key={i} className="rounded-lg border border-slate-800 bg-slate-950/30 px-3 py-2">
-                    <p className="whitespace-pre-wrap text-slate-200">{n.text ?? String(n)}</p>
-                    {n.at && <p className="mt-1 text-xs text-slate-500">{fmtDate(n.at)}</p>}
+                  <li key={i} className="rounded-lg border border-zinc-800 bg-zinc-950/30 px-3 py-2">
+                    <p className="whitespace-pre-wrap text-zinc-200">{n.text ?? String(n)}</p>
+                    {n.at && <p className="mt-1 text-xs text-zinc-500">{fmtDate(n.at)}</p>}
                   </li>
                 ))}
                 {notes.length === 0 && (
-                  <li className="rounded-lg border border-dashed border-slate-800 px-3 py-3 text-center text-xs text-slate-500">
+                  <li className="rounded-lg border border-dashed border-zinc-800 px-3 py-3 text-center text-xs text-zinc-500">
                     No notes yet.
                   </li>
                 )}
@@ -643,7 +643,7 @@ export default function CasesPage() {
                     if (e.key === 'Enter') appendNote()
                   }}
                   placeholder="Add a note…"
-                  className="flex-1 rounded-lg border border-slate-700 bg-slate-900 px-3 py-2 text-sm text-slate-200 placeholder:text-slate-600"
+                  className="flex-1 rounded-lg border border-zinc-700 bg-zinc-900 px-3 py-2 text-sm text-zinc-200 placeholder:text-zinc-600"
                 />
                 <Button onClick={appendNote} disabled={busy || !noteText.trim()}>
                   Add note
@@ -660,7 +660,7 @@ export default function CasesPage() {
 function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block">
-      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-slate-500">{label}</span>
+      <span className="mb-1 block text-xs font-medium uppercase tracking-wide text-zinc-500">{label}</span>
       {children}
     </label>
   )
